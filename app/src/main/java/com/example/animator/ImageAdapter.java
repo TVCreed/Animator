@@ -36,7 +36,7 @@ public class ImageAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ImageView pic = new ImageView(activity);
 
-        activity.getResources().getDrawable(R.drawable.pixel).setTint(Color.argb(255, (position + 30) % 255, (position + 60)% 255, position % 255));
+        activity.getResources().getDrawable(R.drawable.pixel).setTint(Color.argb(255, ((int) (Math.random() * 255)), ((int) (Math.random() * 255)), ((int) (Math.random() * 255))));
 
         pic.setImageResource(R.drawable.pixel);
         pic.setLayoutParams(new ViewGroup.LayoutParams(parent.getWidth() / MainActivity.WIDTH, (parent.getHeight() / MainActivity.HEIGHT) - 30));
