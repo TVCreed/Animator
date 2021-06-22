@@ -12,10 +12,4 @@ public class Frame {
             pixels[i].setB(inPixels[i].getB());
         }
     }
-
-    public void fillWhite() {
-        for (int i = 0; i < PIXELS; i++) {
-            pixels[i] = new Pixel(0, 255, 255);
-        }
-    }
 }

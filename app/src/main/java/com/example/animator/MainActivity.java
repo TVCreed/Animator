@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Button btnPlsWork = findViewById(R.id.btnTest);
         instance = this;
 
         fillWhite();
@@ -48,6 +50,10 @@ public class MainActivity extends AppCompatActivity {
                 });
                 gridView.setOnItemClickListener((parent, view, position, id) -> {
                     setPixel(position, new Pixel(0, 0, 0));
+                    gridView.setAdapter(imageAdapter);
+                });
+                btnPlsWork.setOnClickListener(v -> {
+                    fillWhite();
                     gridView.setAdapter(imageAdapter);
                 });
             }
