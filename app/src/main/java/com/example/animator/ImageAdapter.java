@@ -2,6 +2,7 @@ package com.example.animator;
 
 import android.graphics.Color;
 import android.os.Build;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -18,7 +19,7 @@ public class ImageAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return MainActivity.WIDTH*MainActivity.HEIGHT;
+        return MainActivity.PIXELS;
     }
 
     @Override
@@ -36,10 +37,11 @@ public class ImageAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ImageView pic = new ImageView(activity);
 
-        activity.getResources().getDrawable(R.drawable.pixel).setTint(Color.argb(255, (position + 30) % 255, (position + 60)% 255, position % 255));
+        activity.getResources().getDrawable(R.drawable.pixel).setTint(Color.argb(255, (int) (Math.random()*255), (int) (Math.random()*255), (int) (Math.random()*255)));
 
         pic.setImageResource(R.drawable.pixel);
-        pic.setLayoutParams(new ViewGroup.LayoutParams(parent.getWidth() / MainActivity.WIDTH, (parent.getHeight() / MainActivity.HEIGHT) - 30));
+        int size = (parent.getWidth()-1) / 9;
+        pic.setLayoutParams(new ViewGroup.LayoutParams(size, size));
 
         return pic;
     }
