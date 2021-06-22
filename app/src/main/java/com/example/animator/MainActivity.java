@@ -1,7 +1,11 @@
 package com.example.animator;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.DragEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -15,6 +19,7 @@ import java.util.TimerTask;
 public class MainActivity extends AppCompatActivity {
     public static final int PIXELS = 16*9;
     private static MainActivity instance;
+    private GridView gridView;
     private Pixel[] pixels = new Pixel[PIXELS];
 
     @Override
@@ -27,28 +32,34 @@ public class MainActivity extends AppCompatActivity {
 
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
+            @SuppressLint("ClickableViewAccessibility")
             @Override
             public void run() {
-                GridView gridView = findViewById(R.id.gridView);
+                gridView = findViewById(R.id.gridView);
                 System.out.println("================================================== " + gridView.getLayoutParams().width);
 
                 ImageAdapter imageAdapter = new ImageAdapter(MainActivity.this);
 
                 gridView.setAdapter(imageAdapter);
-                gridView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                gridView.setOnTouchListener((v, event) -> {
+                    float fX = event.getX(),
+                            fY = event.getY();
+                    int size = (gridView.getWidth()-1) / 9,
+                            pos = (int) (Math.floor(fX / size) + (9 * Math.floor(fY / size)));
 
+                    if (pos < 0 || pos > pixels.length-1) return false;
+
+                    switch (event.getAction()) {
+                        case MotionEvent.ACTION_DOWN:
+                        case MotionEvent.ACTION_MOVE:
+                        case MotionEvent.ACTION_UP: {
+                            setPixel(pos, new Pixel(0, 0, 0));
+                            imageAdapter.notifyDataSetChanged();
+                        } break;
+                        default: break;
                     }
 
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
-                gridView.setOnItemClickListener((parent, view, position, id) -> {
-                    setPixel(position, new Pixel(0, 0, 0));
-                    gridView.setAdapter(imageAdapter);
+                    return false;
                 });
             }
         }, 20);
@@ -66,6 +77,10 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < PIXELS; i++) {
             pixels[i] = new Pixel(0, 255, 255);
         }
+    }
+
+    public GridView getGridView() {
+        return gridView;
     }
 
     public static MainActivity getInstance() {
