@@ -21,6 +21,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.584" />
 
+    <Button
+        android:id="@+id/select_color"
+        android:layout_width="331dp"
+        android:layout_height="wrap_content"
+        android:text="@string/select_color_btn_txt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gridView" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
