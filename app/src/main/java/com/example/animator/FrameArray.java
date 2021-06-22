@@ -12,4 +12,8 @@ public class FrameArray {
     public void RemoveFrame(Frame f) {
         Frames.remove(f);
     }
+
+    public Frame getFrame(int pos) {
+        return Frames.get(pos);
+    }
 }

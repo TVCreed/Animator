@@ -3,13 +3,21 @@ package com.example.animator;
 import static com.example.animator.MainActivity.PIXELS;
 
 public class Frame {
-    Pixel[] pixels = new Pixel[PIXELS];
+    private Pixel[] pixels = new Pixel[PIXELS];
+
+    public Frame() {
+
+    }
+
+    public Frame(Pixel[] inPixels) {
+        FillFrame(inPixels);
+    }
 
     public void FillFrame(Pixel[] inPixels) {
-        for (int i = 0; i < PIXELS; i++) {
-            pixels[i].setR(inPixels[i].getR());
-            pixels[i].setG(inPixels[i].getG());
-            pixels[i].setB(inPixels[i].getB());
-        }
+        System.arraycopy(inPixels, 0, pixels, 0, PIXELS);
+    }
+
+    public Pixel[] getPixels() {
+        return pixels;
     }
 }

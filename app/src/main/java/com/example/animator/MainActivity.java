@@ -27,7 +27,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button btnPlsWork = findViewById(R.id.btnTest);
+
+        FrameArray SavedFrames = new FrameArray();
+        Button btnClear = findViewById(R.id.btnTest);
+        Button btnAddFrame = findViewById(R.id.btnAddFrame);
+        Button btnGetFrame = findViewById(R.id.btnGetFrame);
+
         instance = this;
 
         fillWhite();
@@ -63,8 +68,16 @@ public class MainActivity extends AppCompatActivity {
 
                     return false;
                 });
-                btnPlsWork.setOnClickListener(v -> {
+                btnClear.setOnClickListener(v -> {
                     fillWhite();
+                    gridView.setAdapter(imageAdapter);
+                });
+                btnAddFrame.setOnClickListener(v -> {
+                    Frame f = new Frame(pixels);
+                    SavedFrames.AddFrame(f);
+                });
+                btnGetFrame.setOnClickListener(v -> {
+                    fillIn(SavedFrames.getFrame(0).getPixels());
                     gridView.setAdapter(imageAdapter);
                 });
             }
@@ -83,6 +96,10 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < PIXELS; i++) {
             pixels[i] = new Pixel(0, 255, 255);
         }
+    }
+
+    public void fillIn(Pixel[] pix) {
+        System.arraycopy(pix, 0, pixels, 0, PIXELS);
     }
 
     public GridView getGridView() {
