@@ -1,8 +1,6 @@
 package com.example.animator;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.GridView;
 import android.widget.ImageView;
