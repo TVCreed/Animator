@@ -2,9 +2,9 @@ package com.example.animator;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Timer;
@@ -18,6 +18,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Button btnTEST = findViewById(R.id.btnBottom);
+        GridView gridView = findViewById(R.id.gridView);
+
+        btnTEST.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fillWhite();
+
+            }
+        });
 
         fillWhite();
 
@@ -25,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                GridView gridView = findViewById(R.id.gridView);
                 System.out.println("================================================== " + gridView.getLayoutParams().width);
 
                 ImageAdapter imageAdapter = new ImageAdapter(MainActivity.this);
