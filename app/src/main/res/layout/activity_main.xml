@@ -12,18 +12,17 @@
         android:layout_height="wrap_content"
         android:layout_weight=".10"
         android:background="@color/black"
+        android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal"
-            android:text="@string/app_name"
-            android:textColor="@color/white" />
-
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btnSaveFrame" />
     </LinearLayout>
 
     <GridView
