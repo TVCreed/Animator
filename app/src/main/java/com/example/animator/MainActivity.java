@@ -11,8 +11,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
-    public static final int WIDTH = 16, HEIGHT = 16;
-    private Pixel[] pixels = new Pixel[WIDTH*HEIGHT];
+    public static final int PIXELS = 16*9;
+    private Pixel[] pixels = new Pixel[PIXELS];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void fillWhite() {
-        for (int i = 0; i < WIDTH * HEIGHT; i++) {
+        for (int i = 0; i < PIXELS; i++) {
             pixels[i] = new Pixel(255, 255, 255);
         }
     }
