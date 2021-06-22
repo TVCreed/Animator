@@ -1,5 +1,6 @@
 package com.example.animator;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Build;
 import android.util.DisplayMetrics;
@@ -32,13 +33,13 @@ public class ImageAdapter extends BaseAdapter {
         return 0;
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ImageView pic = new ImageView(activity);
-
-
-        activity.getResources().getDrawable(R.drawable.pixel).setTint(Color.argb(255, (int) (Math.random()*255), (int) (Math.random()*255), (int) (Math.random()*255)));
+        Pixel pixel = MainActivity.getInstance().getPixel(position);
+        activity.getResources().getDrawable(R.drawable.pixel).setTint(Color.argb(255, pixel.getR(), pixel.getG(), pixel.getB()));
 
         pic.setImageResource(R.drawable.pixel);
         int size = (parent.getWidth()-1) / 9;
