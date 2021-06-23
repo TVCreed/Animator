@@ -3,33 +3,32 @@ package com.example.animator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.DragEvent;
 import android.view.MotionEvent;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.HorizontalScrollView;
 import android.widget.Toast;
 
 import com.flask.colorpicker.ColorPickerView;
-import com.flask.colorpicker.OnColorSelectedListener;
-import com.flask.colorpicker.builder.ColorPickerClickListener;
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
     public static final int PIXELS = 16*9;
     private static MainActivity instance;
+    private GridView colorsView;
+    private ColorAdapter colorAdapter;
     private GridView gridView;
+    private List<Pixel> colors = new ArrayList<>();
     private Pixel[] pixels = new Pixel[PIXELS];
-    private int selectedColor = 000000;
+    private Pixel selectedColor = new Pixel(0, 0, 0);
+    private boolean removingColor = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,18 +36,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         instance = this;
 
-        Button button = findViewById(R.id.select_color);
-        button.setOnClickListener(v -> ColorPickerDialogBuilder
+        Button add = findViewById(R.id.add_color),
+            remove = findViewById(R.id.remove_color);
+        add.setOnClickListener(v -> ColorPickerDialogBuilder
                 .with(this)
                 .setTitle("Choose color")
                 .initialColor(Color.WHITE)
                 .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
                 .density(12)
                 .setOnColorSelectedListener(selectedColor -> { })
-                .setPositiveButton("Select", (dialog, selectedColor, allColors) -> MainActivity.this.selectedColor = selectedColor)
+                .setPositiveButton("Select", (dialog, selectedColor, allColors) -> {
+                    //add color
+                    colors.add(fromHex(selectedColor));
+                    colorsView.setNumColumns(colors.size());
+                    colorAdapter.notifyDataSetChanged();
+                })
                 .setNegativeButton("Cancel", (dialog, which) -> { })
                 .build()
                 .show());
+        remove.setOnClickListener(v -> {
+            removingColor = true;
+            Toast.makeText(this, "Click on a color to remove it.", Toast.LENGTH_SHORT).show();
+        });
 
         fillWhite();
 
@@ -57,9 +66,12 @@ public class MainActivity extends AppCompatActivity {
             @SuppressLint("ClickableViewAccessibility")
             @Override
             public void run() {
+                colorAdapter = new ColorAdapter(MainActivity.this);
                 ImageAdapter imageAdapter = new ImageAdapter(MainActivity.this);
 
+                colorsView = findViewById(R.id.colors);
                 gridView = findViewById(R.id.gridView);
+                colorsView.setAdapter(colorAdapter);
                 gridView.setAdapter(imageAdapter);
                 gridView.setOnTouchListener((v, event) -> {
                     float fX = event.getX(),
@@ -73,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                         case MotionEvent.ACTION_DOWN:
                         case MotionEvent.ACTION_MOVE:
                         case MotionEvent.ACTION_UP: {
-                            setPixel(pos, fromHex(selectedColor));
+                            setPixel(pos, selectedColor);
                             imageAdapter.notifyDataSetChanged();
                         } break;
                         default: break;
@@ -99,12 +111,45 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public ColorAdapter getColorAdapter() {
+        return colorAdapter;
+    }
+
     public GridView getGridView() {
         return gridView;
     }
 
+    public void setSelectedColor(Pixel selectedColor) {
+        this.selectedColor = selectedColor;
+    }
+
     public static MainActivity getInstance() {
         return instance;
+    }
+
+    public Pixel getPixelColor(int pos) {
+        if (pos < 0 || pos >= colors.size()) return new Pixel(0, 0, 0);
+        return colors.get(pos);
+    }
+
+    public void addPixelColor(Pixel pixel) {
+        colors.add(pixel);
+    }
+
+    public void removePixelColor(int position) {
+        colors.remove(position);
+    }
+
+    public int getPixelColors() {
+        return colors.size();
+    }
+
+    public boolean isRemovingColor() {
+        return removingColor;
+    }
+
+    public void setRemovingColor(boolean removingColor) {
+        this.removingColor = removingColor;
     }
 
     public static Pixel fromHex(int hex) {

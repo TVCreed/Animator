@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".MainActivity">
 
     <GridView
         android:id="@+id/gridView"
-        android:layout_width="331dp"
-        android:layout_height="589dp"
+        android:layout_width="365dp"
+        android:layout_height="648dp"
         android:columnWidth="24sp"
         android:horizontalSpacing="0sp"
         android:numColumns="9"
@@ -19,17 +20,46 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.584" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/select_color"
-        android:layout_width="331dp"
-        android:layout_height="wrap_content"
-        android:text="@string/select_color_btn_txt"
+        android:id="@+id/add_color"
+        android:layout_width="61dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="688dp"
+        android:text="+"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:backgroundTint="@android:color/holo_green_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/remove_color"
+        android:layout_width="60dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="648dp"
+        android:text="-"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:backgroundTint="@android:color/holo_red_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <GridView
+        android:id="@+id/colors"
+        android:layout_width="248dp"
+        android:layout_height="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.423"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
