@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">Animator</string>
     <string name="btnFillWhite">Clear</string>
-    <string name="btnAddFrame">Add</string>
+    <string name="btnAddFrame">+</string>
+    <string name="btnRemoveFrame">-</string>
     <string name="btnGetFrame">Get</string>
+    <string name="btnPaletteV">Palette View</string>
+    <string name="btnFramesV">Frame View</string>
     <string name="select_color_btn_txt">Select Color</string>
 </resources>
