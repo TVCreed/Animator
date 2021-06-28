@@ -44,7 +44,7 @@ public class ImageAdapter extends BaseAdapter {
 
         activity.getResources().getDrawable(R.drawable.pixel).setTint(Color.argb(255, pixel.getR(), pixel.getG(), pixel.getB()));
         pic.setImageResource(R.drawable.pixel);
-        int size = (parent.getWidth()-1) / 9;
+        int size = parent.getWidth() / 9;
         pic.setLayoutParams(new ViewGroup.LayoutParams(size, size));
 
         return pic;

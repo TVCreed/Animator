@@ -6,17 +6,12 @@ import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 
 import androidx.annotation.RequiresApi;
 
 public class ColorAdapter extends BaseAdapter {
-    private final MainActivity activity;
-
-    public ColorAdapter(MainActivity activity) {
-        this.activity = activity;
-    }
-
     @Override
     public int getCount() {
         return MainActivity.getInstance().getPixelColors();
@@ -36,52 +31,57 @@ public class ColorAdapter extends BaseAdapter {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView pic = new ImageView(activity);
+        MainActivity activity = MainActivity.getInstance();
+        ImageView pixelView = new ImageView(activity);
+        Pixel pixel = activity.getPixelColor(position);
+        int pixelDrawableId = R.drawable.pixel;
 
-        Pixel pixel = MainActivity.getInstance().getPixelColor(position);
+        activity.getResources().getDrawable(pixelDrawableId)
+                .setTint(Color.argb(255, pixel.getR(), pixel.getG(), pixel.getB()));
+        pixelView.setImageResource(pixelDrawableId);
 
-        activity.getResources().getDrawable(R.drawable.pixel).setTint(Color.argb(255, pixel.getR(), pixel.getG(), pixel.getB()));
-        pic.setImageResource(R.drawable.pixel);
+        pixelView.setOnClickListener(v -> {
+            if (activity.isRemovingColor()) {
+                activity.removePixelColor(position);
+                activity.setRemovingColor(false);
 
-        pic.setOnClickListener(v -> {
-            if (MainActivity.getInstance().isRemovingColor()) {
-                MainActivity.getInstance().removePixelColor(position);
-                MainActivity.getInstance().setRemovingColor(false);
+                applyGrid(getCount(), activity.getColorsView());
+            } else activity.setSelectedColor(pixel);
 
-                notifyDataSetChanged();
-
-                ColorLayout layout;
-
-                if (getCount() <= 1) layout = ColorLayout.ONE;
-                else if (getCount() <= 2) layout = ColorLayout.TWO;
-                else if (getCount() <= 4) layout = ColorLayout.FOUR;
-                else layout = ColorLayout.EIGHT;
-
-                layout.applyGrid(MainActivity.getInstance().getColorsView());
-            } else {
-                MainActivity.getInstance().setSelectedColor(pixel);
-            }
-            MainActivity.getInstance().getColorAdapter().notifyDataSetChanged();
+            notifyDataSetChanged();
         });
 
+        applyPixel(getCount(), activity.getColorsView(), pixelView);
+
+        return pixelView;
+    }
+
+    public static void applyGrid(int count, GridView colorsView) {
         ColorLayout layout;
 
-        System.out.println("-------------");
-        System.out.println("-------------");
-        System.out.println("-------------");
-        System.out.println(getCount());
-        System.out.println("-------------");
-        System.out.println("-------------");
-        System.out.println("-------------");
+        // Find optimal layout for color palette
 
-        if (getCount() <= 1) layout = ColorLayout.ONE;
-        else if (getCount() <= 2) layout = ColorLayout.TWO;
-        else if (getCount() <= 4) layout = ColorLayout.FOUR;
-        else if (getCount() <= 8) layout = ColorLayout.EIGHT;
+        if (count <= 1) layout = ColorLayout.ONE;
+        else if (count <= 2) layout = ColorLayout.TWO;
+        else if (count <= 4) layout = ColorLayout.FOUR;
+        else if (count <= 8) layout = ColorLayout.EIGHT;
         else layout = ColorLayout.EIGHT;
 
-        layout.applyImage(MainActivity.getInstance().getColorsView(), pic);
+        // Apply layout to color palette
+        layout.applyGrid(colorsView);
+    }
 
-        return pic;
+    public static void applyPixel(int count, GridView colorsView, ImageView pixelView) {
+        ColorLayout layout;
+
+        // Find optimal layout for color in the layout
+        if (count <= 1) layout = ColorLayout.ONE;
+        else if (count <= 2) layout = ColorLayout.TWO;
+        else if (count <= 4) layout = ColorLayout.FOUR;
+        else if (count <= 8) layout = ColorLayout.EIGHT;
+        else layout = ColorLayout.EIGHT;
+
+        // Apply layout to color in the layout
+        layout.applyImage(colorsView, pixelView);
     }
 }

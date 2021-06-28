@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.HorizontalScrollView;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private Pixel selectedColor = new Pixel(0, 0, 0);
     private boolean removingColor = false;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,14 +39,15 @@ public class MainActivity extends AppCompatActivity {
         instance = this;
 
         Button add = findViewById(R.id.add_color),
-            remove = findViewById(R.id.remove_color);
-        add.setOnClickListener(v -> ColorPickerDialogBuilder
-                .with(this)
+                remove = findViewById(R.id.remove_color);
+        add.setOnClickListener(v ->
+                ColorPickerDialogBuilder.with(this)
                 .setTitle("Choose color")
                 .initialColor(Color.WHITE)
                 .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
                 .density(12)
-                .setOnColorSelectedListener(selectedColor -> { })
+                .setOnColorSelectedListener(selectedColor -> {
+                })
                 .setPositiveButton("Select", (dialog, selectedColor, allColors) -> {
                     //add color
                     colors.add(fromHex(selectedColor));
@@ -59,51 +62,51 @@ public class MainActivity extends AppCompatActivity {
 
                     layout.applyGrid(colorsView);
                 })
-                .setNegativeButton("Cancel", (dialog, which) -> { })
+                .setNegativeButton("Cancel", (dialog, which) -> {
+                })
                 .build()
-                .show());
+                .show()
+        );
         remove.setOnClickListener(v -> {
             removingColor = true;
             Toast.makeText(this, "Click on a color to remove it.", Toast.LENGTH_SHORT).show();
         });
 
         fillWhite();
+        colorAdapter = new ColorAdapter();
+        ImageAdapter imageAdapter = new ImageAdapter(MainActivity.this);
 
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @SuppressLint("ClickableViewAccessibility")
+        colorsView = findViewById(R.id.colors);
+        gridView = findViewById(R.id.gridView);
+        colorsView.setAdapter(colorAdapter);
+        gridView.setAdapter(imageAdapter);
+        gridView.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void run() {
-                colorAdapter = new ColorAdapter(MainActivity.this);
-                ImageAdapter imageAdapter = new ImageAdapter(MainActivity.this);
+            public boolean onTouch(View v, MotionEvent event) {
+                v.performClick();
 
-                colorsView = findViewById(R.id.colors);
-                gridView = findViewById(R.id.gridView);
-                colorsView.setAdapter(colorAdapter);
-                gridView.setAdapter(imageAdapter);
-                gridView.setOnTouchListener((v, event) -> {
-                    float fX = event.getX(),
-                            fY = event.getY();
-                    int size = (gridView.getWidth()-1) / 9,
-                            pos = (int) (Math.floor(fX / size) + (9 * Math.floor(fY / size)));
+                float fX = event.getX(),
+                        fY = event.getY();
+                int size = (gridView.getWidth() - 1) / 9,
+                        pos = (int) (Math.floor(fX / size) + (9 * Math.floor(fY / size)));
 
-                    if (pos < 0 || pos > pixels.length-1) return false;
+                if (pos < 0 || pos > pixels.length - 1) return false;
 
-                    switch (event.getAction()) {
-                        case MotionEvent.ACTION_DOWN:
-                        case MotionEvent.ACTION_MOVE:
-                        case MotionEvent.ACTION_UP: {
-                            setPixel(pos, selectedColor);
-                            imageAdapter.notifyDataSetChanged();
-                        } break;
-                        default: break;
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                    case MotionEvent.ACTION_MOVE:
+                    case MotionEvent.ACTION_UP: {
+                        setPixel(pos, selectedColor);
+                        imageAdapter.notifyDataSetChanged();
                     }
+                    break;
+                    default:
+                        break;
+                }
 
-                    return false;
-                });
-                timer.cancel();
+                return false;
             }
-        }, 20);
+        });
     }
 
     public void setPixel(int pos, Pixel pixel) {
