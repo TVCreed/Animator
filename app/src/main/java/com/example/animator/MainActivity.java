@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private Pixel[] pixels = new Pixel[PIXELS];
     private Pixel selectedColor = new Pixel(0, 0, 0);
     private boolean removingColor = false;
+    private ImageAdapter imageAdapter = new ImageAdapter(MainActivity.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +39,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         FrameArray SavedFrames = new FrameArray();
-        Button btnClear = findViewById(R.id.btnTest);
-        Button btnAddFrame = findViewById(R.id.btnAddFrame);
-        Button btnGetFrame = findViewById(R.id.btnGetFrame);
 
         instance = this;
 
@@ -77,41 +75,32 @@ public class MainActivity extends AppCompatActivity {
 
         fillWhite();
 
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @SuppressLint("ClickableViewAccessibility")
-            @Override
-            public void run() {
-                colorAdapter = new ColorAdapter(MainActivity.this);
-                ImageAdapter imageAdapter = new ImageAdapter(MainActivity.this);
+        colorAdapter = new ColorAdapter(MainActivity.this);
 
-                colorsView = findViewById(R.id.colors);
-                gridView = findViewById(R.id.gridView);
-                colorsView.setAdapter(colorAdapter);
-                gridView.setAdapter(imageAdapter);
-                gridView.setOnTouchListener((v, event) -> {
-                    float fX = event.getX(),
-                            fY = event.getY();
-                    int size = (gridView.getWidth()-1) / 9,
-                            pos = (int) (Math.floor(fX / size) + (9 * Math.floor(fY / size)));
+        colorsView = findViewById(R.id.colors);
+        gridView = findViewById(R.id.gridView);
+        colorsView.setAdapter(colorAdapter);
+        gridView.setAdapter(imageAdapter);
+        gridView.setOnTouchListener((v, event) -> {
+            float fX = event.getX(),
+                    fY = event.getY();
+            int size = (gridView.getWidth()-1) / 9,
+                    pos = (int) (Math.floor(fX / size) + (9 * Math.floor(fY / size)));
 
-                    if (pos < 0 || pos > pixels.length-1) return false;
+            if (pos < 0 || pos > pixels.length-1) return false;
 
-                    switch (event.getAction()) {
-                        case MotionEvent.ACTION_DOWN:
-                        case MotionEvent.ACTION_MOVE:
-                        case MotionEvent.ACTION_UP: {
-                            setPixel(pos, selectedColor);
-                            imageAdapter.notifyDataSetChanged();
-                        } break;
-                        default: break;
-                    }
-
-                    return false;
-                });
-                timer.cancel();
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                case MotionEvent.ACTION_MOVE:
+                case MotionEvent.ACTION_UP: {
+                    setPixel(pos, selectedColor);
+                    imageAdapter.notifyDataSetChanged();
+                } break;
+                default: break;
             }
-        }, 20);
+
+            return false;
+        });
     }
 
     public void setPixel(int pos, Pixel pixel) {
