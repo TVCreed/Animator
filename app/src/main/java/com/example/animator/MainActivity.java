@@ -48,8 +48,16 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("Select", (dialog, selectedColor, allColors) -> {
                     //add color
                     colors.add(fromHex(selectedColor));
-                    colorsView.setNumColumns(colors.size());
                     colorAdapter.notifyDataSetChanged();
+
+                    ColorLayout layout;
+
+                    if (colorAdapter.getCount() <= 1) layout = ColorLayout.ONE;
+                    else if (colorAdapter.getCount() <= 2) layout = ColorLayout.TWO;
+                    else if (colorAdapter.getCount() <= 4) layout = ColorLayout.FOUR;
+                    else layout = ColorLayout.EIGHT;
+
+                    layout.applyGrid(colorsView);
                 })
                 .setNegativeButton("Cancel", (dialog, which) -> { })
                 .build()
@@ -93,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
                     return false;
                 });
+                timer.cancel();
             }
         }, 20);
     }
@@ -107,12 +116,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void fillWhite() {
         for (int i = 0; i < PIXELS; i++) {
-            pixels[i] = new Pixel(0, 255, 255);
+            pixels[i] = new Pixel(255, 255, 255);
         }
     }
 
     public ColorAdapter getColorAdapter() {
         return colorAdapter;
+    }
+
+    public GridView getColorsView() {
+        return colorsView;
     }
 
     public GridView getGridView() {

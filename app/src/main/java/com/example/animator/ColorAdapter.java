@@ -19,7 +19,7 @@ public class ColorAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return MainActivity.PIXELS;
+        return MainActivity.getInstance().getPixelColors();
     }
 
     @Override
@@ -42,19 +42,45 @@ public class ColorAdapter extends BaseAdapter {
 
         activity.getResources().getDrawable(R.drawable.pixel).setTint(Color.argb(255, pixel.getR(), pixel.getG(), pixel.getB()));
         pic.setImageResource(R.drawable.pixel);
-        pic.setLayoutParams(new ViewGroup.LayoutParams(
-                parent.getHeight(),
-                parent.getHeight()));
 
         pic.setOnClickListener(v -> {
             if (MainActivity.getInstance().isRemovingColor()) {
                 MainActivity.getInstance().removePixelColor(position);
                 MainActivity.getInstance().setRemovingColor(false);
+
+                notifyDataSetChanged();
+
+                ColorLayout layout;
+
+                if (getCount() <= 1) layout = ColorLayout.ONE;
+                else if (getCount() <= 2) layout = ColorLayout.TWO;
+                else if (getCount() <= 4) layout = ColorLayout.FOUR;
+                else layout = ColorLayout.EIGHT;
+
+                layout.applyGrid(MainActivity.getInstance().getColorsView());
             } else {
                 MainActivity.getInstance().setSelectedColor(pixel);
             }
             MainActivity.getInstance().getColorAdapter().notifyDataSetChanged();
         });
+
+        ColorLayout layout;
+
+        System.out.println("-------------");
+        System.out.println("-------------");
+        System.out.println("-------------");
+        System.out.println(getCount());
+        System.out.println("-------------");
+        System.out.println("-------------");
+        System.out.println("-------------");
+
+        if (getCount() <= 1) layout = ColorLayout.ONE;
+        else if (getCount() <= 2) layout = ColorLayout.TWO;
+        else if (getCount() <= 4) layout = ColorLayout.FOUR;
+        else if (getCount() <= 8) layout = ColorLayout.EIGHT;
+        else layout = ColorLayout.EIGHT;
+
+        layout.applyImage(MainActivity.getInstance().getColorsView(), pic);
 
         return pic;
     }
