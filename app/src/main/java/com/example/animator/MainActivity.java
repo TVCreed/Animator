@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean removingColor = false;
     private ImageAdapter imageAdapter = new ImageAdapter(MainActivity.this);
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
                 .initialColor(Color.WHITE)
                 .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
                 .density(12)
-                .setOnColorSelectedListener(selectedColor -> { })
+                .setOnColorSelectedListener(selectedColor -> {
+                })
                 .setPositiveButton("Select", (dialog, selectedColor, allColors) -> {
                     //add color
                     colors.add(fromHex(selectedColor));
@@ -75,9 +77,11 @@ public class MainActivity extends AppCompatActivity {
 
                     layout.applyGrid(colorsView);
                 })
-                .setNegativeButton("Cancel", (dialog, which) -> { })
+                .setNegativeButton("Cancel", (dialog, which) -> {
+                })
                 .build()
-                .show());
+                .show()
+        );
         removeColor.setOnClickListener(v -> {
             removingColor = true;
             Toast.makeText(this, "Click on a color to remove it.", Toast.LENGTH_SHORT).show();
@@ -97,8 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         fillWhite();
-
-        colorAdapter = new ColorAdapter(MainActivity.this);
+        colorAdapter = new ColorAdapter();
 
         colorsView = findViewById(R.id.colors);
         gridView = findViewById(R.id.gridView);
