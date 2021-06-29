@@ -11,4 +11,5 @@
     <string name="btnRedo">»</string>
     <string name="btnPrevFrame">«</string>
     <string name="btnNextFrame">»</string>
+    <string name="txtAppDesc">A little drawing app by <br/> Mason Dunkle, Dustin Dell, Tyler Shearer, and Nick Anderson</string>
 </resources>

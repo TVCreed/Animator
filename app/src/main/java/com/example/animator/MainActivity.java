@@ -26,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
     public static final int PIXELS = 16*9;
     private static MainActivity instance;
     private GridView colorsView;
-    private ColorAdapter colorAdapter;
+    static public ColorAdapter colorAdapter;
     private GridView gridView;
-    private List<Pixel> colors = new ArrayList<>();
+    static public List<Pixel> colors = new ArrayList<>();
     private Pixel[] pixels = new Pixel[PIXELS];
     private Pixel[] tempPixels = new Pixel[PIXELS];
     private Pixel selectedColor = new Pixel(0, 0, 0);
@@ -45,18 +45,6 @@ public class MainActivity extends AppCompatActivity {
         FrameArray SavedFrames = new FrameArray();
 
         instance = this;
-
-        Timer timedColors = new Timer();
-        TimerTask addDefaultColors = new TimerTask() {
-            @Override
-            public void run() {
-                colors.add(new Pixel(0, 0, 0));
-                colors.add(new Pixel(255, 255, 255));
-                colorAdapter.notifyDataSetChanged();
-                timedColors.cancel();
-            }
-        };
-        timedColors.schedule(addDefaultColors, 1);
 
         findViewById(R.id.groupColors).setVisibility(View.VISIBLE);
         findViewById(R.id.groupFrame).setVisibility(View.GONE);
