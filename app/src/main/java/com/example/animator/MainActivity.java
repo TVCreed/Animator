@@ -1,11 +1,13 @@
 package com.example.animator;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean removingColor = false;
     private ImageAdapter imageAdapter = new ImageAdapter(MainActivity.this);
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
             removeColor = findViewById(R.id.btnRemoveColor),
             AddFrame = findViewById(R.id.btnAddFrame),
             RemoveFrame = findViewById(R.id.btnRemoveFrame),
-            PaletteBtn = findViewById(R.id.btnPaletteV),
-            FramesBtn = findViewById(R.id.btnFramesV);
+            PaletteBtn = findViewById(R.id.btnPalette),
+            FramesBtn = findViewById(R.id.btnFrame);
 
         PaletteBtn.setOnClickListener(v -> {
             findViewById(R.id.groupFrame).setVisibility(View.GONE);
@@ -84,7 +87,9 @@ public class MainActivity extends AppCompatActivity {
         );
         removeColor.setOnClickListener(v -> {
             removingColor = !removingColor;
-            Toast.makeText(this, "Click on a color to remove it or press remove color again to cancel.", Toast.LENGTH_SHORT).show();
+
+            if (removingColor) removeColor.getBackground().setTint(getResources().getColor(R.color.red));
+            else removeColor.getBackground().setTint(getResources().getColor(R.color.gray));
         });
 
         FramesBtn.setOnClickListener(v -> {
@@ -122,8 +127,8 @@ public class MainActivity extends AppCompatActivity {
         fillWhite();
         colorAdapter = new ColorAdapter();
 
-        colorsView = findViewById(R.id.colors);
-        gridView = findViewById(R.id.gridView);
+        colorsView = findViewById(R.id.viewGridPalette);
+        gridView = findViewById(R.id.viewGridPixels);
         colorsView.setAdapter(colorAdapter);
         gridView.setAdapter(imageAdapter);
         gridView.setOnTouchListener((v, event) -> {

@@ -12,7 +12,7 @@
         android:id="@+id/btnNextFrame"
         android:layout_width="60dp"
         android:layout_height="45dp"
-        android:text="@string/btnRedo"
+        android:text="@string/btnNextFrame"
         android:textColor="@color/black"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -28,7 +28,7 @@
         android:id="@+id/btnPrevFrame"
         android:layout_width="60dp"
         android:layout_height="45dp"
-        android:text="@string/btnUndo"
+        android:text="@string/btnPrevFrame"
         android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -41,7 +41,7 @@
         app:layout_constraintVertical_bias="0.055" />
 
     <Button
-        android:id="@+id/btnRedo"
+        android:id="@+id/btnRedoFrame"
         android:layout_width="60dp"
         android:layout_height="45dp"
         android:text="@string/btnRedo"
@@ -57,7 +57,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/btnUndo"
+        android:id="@+id/btnUndoFrame"
         android:layout_width="60dp"
         android:layout_height="45dp"
         android:text="@string/btnUndo"
@@ -73,7 +73,7 @@
         app:layout_constraintVertical_bias="0.055" />
 
     <GridView
-        android:id="@+id/gridView"
+        android:id="@+id/viewGridPixels"
         android:layout_width="365dp"
         android:layout_height="648dp"
         android:columnWidth="24sp"
@@ -97,7 +97,7 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:backgroundTint="@android:color/holo_green_dark"
+        app:backgroundTint="@color/green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.025"
@@ -145,7 +145,7 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:backgroundTint="@android:color/holo_red_dark"
+        app:backgroundTint="@color/gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.025"
@@ -154,8 +154,8 @@
         app:layout_constraintVertical_bias="0.055" />
 
     <Button
-        android:id="@+id/btnFramesV"
-        android:layout_width="105dp"
+        android:id="@+id/btnFrame"
+        android:layout_width="100dp"
         android:layout_height="45dp"
         android:text="@string/btnFramesV"
         android:textColor="@color/black"
@@ -169,8 +169,8 @@
         app:layout_constraintVertical_bias="0.055" />
 
     <Button
-        android:id="@+id/btnPaletteV"
-        android:layout_width="105dp"
+        android:id="@+id/btnPalette"
+        android:layout_width="100dp"
         android:layout_height="45dp"
         android:text="@string/btnPaletteV"
         android:textColor="@color/black"
@@ -184,10 +184,10 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <GridView
-        android:id="@+id/colors"
+        android:id="@+id/viewGridPalette"
         android:layout_width="146dp"
         android:layout_height="62dp"
-        app:layout_constraintBottom_toTopOf="@+id/gridView"
+        app:layout_constraintBottom_toTopOf="@+id/viewGridPixels"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.294"
         app:layout_constraintStart_toStartOf="parent"
@@ -199,7 +199,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:constraint_referenced_ids="btnRemoveColor,btnAddColor,colors,btnRedo,btnUndo" />
+        app:constraint_referenced_ids="btnRemoveColor,btnAddColor,viewGridPalette,btnRedoFrame,btnUndoFrame" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/groupFrame"
