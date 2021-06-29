@@ -132,27 +132,14 @@
         android:id="@+id/groupColors"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:constraint_referenced_ids="remove_color,add_color,colors" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/groupFrame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="btnAddFrame,btnRemoveFrame,textView2" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btnFramesV"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/gridView"
-        app:layout_constraintEnd_toStartOf="@+id/frameButton"
-        app:layout_constraintHorizontal_bias="0.366"
-        app:layout_constraintStart_toEndOf="@+id/btnAddFrame"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.482" />
+        app:constraint_referenced_ids="btnAddFrame,btnRemoveFrame" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

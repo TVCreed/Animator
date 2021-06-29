@@ -104,29 +104,26 @@ public class MainActivity extends AppCompatActivity {
         gridView = findViewById(R.id.gridView);
         colorsView.setAdapter(colorAdapter);
         gridView.setAdapter(imageAdapter);
-        gridView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                v.performClick();
-                float fX = event.getX(),
-                        fY = event.getY();
-                int size = (gridView.getWidth()-1) / 9,
-                        pos = (int) (Math.floor(fX / size) + (9 * Math.floor(fY / size)));
+        gridView.setOnTouchListener((v, event) -> {
+            v.performClick();
+            float fX = event.getX(),
+                    fY = event.getY();
+            int size = (gridView.getWidth()-1) / 9,
+                    pos = (int) (Math.floor(fX / size) + (9 * Math.floor(fY / size)));
 
-                if (pos < 0 || pos > pixels.length-1) return false;
+            if (pos < 0 || pos > pixels.length-1) return false;
 
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                    case MotionEvent.ACTION_MOVE:
-                    case MotionEvent.ACTION_UP: {
-                        setPixel(pos, selectedColor);
-                        imageAdapter.notifyDataSetChanged();
-                    } break;
-                    default: break;
-                }
-
-                return false;
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                case MotionEvent.ACTION_MOVE:
+                case MotionEvent.ACTION_UP: {
+                    setPixel(pos, selectedColor);
+                    imageAdapter.notifyDataSetChanged();
+                } break;
+                default: break;
             }
+
+            return false;
         });
     }
 
