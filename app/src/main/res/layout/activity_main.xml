@@ -8,6 +8,34 @@
     android:background="@color/black"
     tools:context=".MainActivity">
 
+    <GridView
+        android:id="@+id/viewGridPalette"
+        android:layout_width="146dp"
+        android:layout_height="62dp"
+        app:layout_constraintBottom_toTopOf="@+id/viewGridPixels"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.294"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4" />
+
+    <GridView
+        android:id="@+id/viewGridPixels"
+        android:layout_width="365dp"
+        android:layout_height="648dp"
+        android:columnWidth="24sp"
+        android:horizontalSpacing="0sp"
+        android:numColumns="9"
+        android:padding="0sp"
+        android:verticalSpacing="0sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+    </GridView>
+
     <Button
         android:id="@+id/btnNextFrame"
         android:layout_width="60dp"
@@ -71,23 +99,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.055" />
-
-    <GridView
-        android:id="@+id/viewGridPixels"
-        android:layout_width="365dp"
-        android:layout_height="648dp"
-        android:columnWidth="24sp"
-        android:horizontalSpacing="0sp"
-        android:numColumns="9"
-        android:padding="0sp"
-        android:verticalSpacing="0sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" >
-
-    </GridView>
 
     <Button
         android:id="@+id/btnAddColor"
@@ -183,29 +194,31 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <GridView
-        android:id="@+id/viewGridPalette"
-        android:layout_width="146dp"
-        android:layout_height="62dp"
-        app:layout_constraintBottom_toTopOf="@+id/viewGridPixels"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.294"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.50" />
-
     <androidx.constraintlayout.widget.Group
         android:id="@+id/groupColors"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         app:constraint_referenced_ids="btnRemoveColor,btnAddColor,viewGridPalette,btnRedoFrame,btnUndoFrame" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/groupFrame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="btnAddFrame,btnRemoveFrame,btnPrevFrame,btnNextFrame" />
+        android:visibility="gone"
+        app:constraint_referenced_ids="btnAddFrame,btnRemoveFrame,btnPrevFrame,btnNextFrame,btnSwitch" />
+
+    <Button
+        android:id="@+id/btnSwitch"
+        android:layout_width="143dp"
+        android:layout_height="78dp"
+        android:text="@string/btnSwitch2"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.297"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

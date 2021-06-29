@@ -1,10 +1,15 @@
 package com.example.animator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FrameArray {
-    private int framePos = 0;
-    private List<Frame> Frames;
+    public int framePos = -1;
+    private List<Frame> Frames = new ArrayList<>();
+
+    public FrameArray() {
+
+    }
 
     public void AddFrame(Frame f) {
         Frames.add(f);
@@ -22,11 +27,23 @@ public class FrameArray {
         return framePos;
     }
 
-    public void addPos() {
-        framePos++;
+    public boolean addPos() {
+        if (Frames != null) {
+            if (framePos < Frames.size()-1 && framePos >= 0) {
+                framePos++;
+                return true;
+            }
+        }
+        return false;
     }
 
-    public void subPos() {
-        framePos--;
+    public boolean subPos() {
+        if (Frames != null) {
+            if (framePos <= Frames.size()-1 && framePos > 0) {
+                framePos--;
+                return true;
+            }
+        }
+        return false;
     }
 }

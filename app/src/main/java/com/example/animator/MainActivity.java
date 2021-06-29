@@ -13,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.Switch;
 import android.widget.Toast;
 import com.flask.colorpicker.ColorPickerView;
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     static public List<Pixel> colors = new ArrayList<>();
     private Pixel[] pixels = new Pixel[PIXELS];
     private Pixel[] tempPixels = new Pixel[PIXELS];
+    private FrameArray SavedFrames = new FrameArray();
     private Pixel selectedColor = new Pixel(0, 0, 0);
     private boolean removingColor = false;
     private ImageAdapter imageAdapter = new ImageAdapter(MainActivity.this);
@@ -42,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FrameArray SavedFrames = new FrameArray();
-
         instance = this;
 
         findViewById(R.id.groupColors).setVisibility(View.VISIBLE);
@@ -54,7 +54,12 @@ public class MainActivity extends AppCompatActivity {
             AddFrame = findViewById(R.id.btnAddFrame),
             RemoveFrame = findViewById(R.id.btnRemoveFrame),
             PaletteBtn = findViewById(R.id.btnPalette),
-            FramesBtn = findViewById(R.id.btnFrame);
+            FramesBtn = findViewById(R.id.btnFrame),
+            UndoFrameBtn = findViewById(R.id.btnUndoFrame),
+            RedoFrameBtn = findViewById(R.id.btnRedoFrame),
+            NextFrameBtn = findViewById(R.id.btnNextFrame),
+            PrevFrameBtn = findViewById(R.id.btnPrevFrame),
+            SwitchBtn = findViewById(R.id.btnSwitch);
 
         PaletteBtn.setOnClickListener(v -> {
             findViewById(R.id.groupFrame).setVisibility(View.GONE);
@@ -99,6 +104,9 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.groupFrame).setVisibility(View.VISIBLE);
         });
         AddFrame.setOnClickListener(v -> {
+            if (SavedFrames.framePos == -1) {
+                SavedFrames.framePos = 0;
+            }
             AlertDialog.Builder confirm = new AlertDialog.Builder(this);
             confirm.setTitle("Add Frame");
             confirm.setMessage("Would you like to add this frame?");
@@ -123,6 +131,21 @@ public class MainActivity extends AppCompatActivity {
                 dialog.dismiss();
             });
             confirm.show();
+        });
+
+        NextFrameBtn.setOnClickListener(v -> {
+            if (SavedFrames.addPos()) {
+                loadPixels();
+            }
+        });
+        PrevFrameBtn.setOnClickListener(v -> {
+            if (SavedFrames.subPos()) {
+                loadPixels();
+            }
+        });
+
+        SwitchBtn.setOnClickListener(v -> {
+
         });
 
 
@@ -155,6 +178,11 @@ public class MainActivity extends AppCompatActivity {
 
             return false;
         });
+    }
+
+    public void loadPixels() {
+        pixels = SavedFrames.getFrame(SavedFrames.framePos).getPixels();
+        imageAdapter.notifyDataSetChanged();
     }
 
     public void setPixel(int pos, Pixel pixel) {
