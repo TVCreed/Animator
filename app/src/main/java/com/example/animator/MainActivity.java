@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
         gridView.setAdapter(imageAdapter);
         gridView.setOnTouchListener((v, event) -> {
             v.performClick();
+
             float fX = event.getX(),
                     fY = event.getY();
             int size = (gridView.getWidth()-1) / 9,

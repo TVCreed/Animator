@@ -7,4 +7,6 @@
     <string name="btnPaletteV">Palette View</string>
     <string name="btnFramesV">Frame View</string>
     <string name="select_color_btn_txt">Select Color</string>
+    <string name="btnUndo">«</string>
+    <string name="btnRedo">»</string>
 </resources>
