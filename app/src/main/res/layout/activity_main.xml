@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/btnRedo"
+        android:id="@+id/btnRedoFrame"
         android:layout_width="60dp"
         android:layout_height="45dp"
         android:text="@string/btnRedo"
@@ -25,7 +25,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/btnUndo"
+        android:id="@+id/btnUndoFrame"
         android:layout_width="60dp"
         android:layout_height="45dp"
         android:text="@string/btnUndo"
@@ -41,7 +41,7 @@
         app:layout_constraintVertical_bias="0.055" />
 
     <GridView
-        android:id="@+id/gridView"
+        android:id="@+id/viewGridPixels"
         android:layout_width="365dp"
         android:layout_height="648dp"
         android:columnWidth="24sp"
@@ -58,7 +58,7 @@
     </GridView>
 
     <Button
-        android:id="@+id/add_color"
+        android:id="@+id/btnAddColor"
         android:layout_width="60dp"
         android:layout_height="45dp"
         android:text="@string/btnAddFrame"
@@ -106,7 +106,7 @@
         app:layout_constraintVertical_bias="0.055" />
 
     <Button
-        android:id="@+id/remove_color"
+        android:id="@+id/btnRemoveColor"
         android:layout_width="60dp"
         android:layout_height="45dp"
         android:text="@string/btnRemoveFrame"
@@ -122,7 +122,7 @@
         app:layout_constraintVertical_bias="0.055" />
 
     <Button
-        android:id="@+id/frameButton"
+        android:id="@+id/btnFrame"
         android:layout_width="100dp"
         android:layout_height="45dp"
         android:text="@string/btnFramesV"
@@ -137,7 +137,7 @@
         app:layout_constraintVertical_bias="0.055" />
 
     <Button
-        android:id="@+id/paletteButton"
+        android:id="@+id/btnPalette"
         android:layout_width="100dp"
         android:layout_height="45dp"
         android:text="@string/btnPaletteV"
@@ -152,10 +152,10 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <GridView
-        android:id="@+id/colors"
+        android:id="@+id/viewGridPalette"
         android:layout_width="146dp"
         android:layout_height="62dp"
-        app:layout_constraintBottom_toTopOf="@+id/gridView"
+        app:layout_constraintBottom_toTopOf="@+id/viewGridPixels"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.294"
         app:layout_constraintStart_toStartOf="parent"
@@ -167,7 +167,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:constraint_referenced_ids="remove_color,add_color,colors,btnRedo,btnUndo" />
+        app:constraint_referenced_ids="btnRemoveColor,btnAddColor,viewGridPalette,btnRedoFrame,btnUndoFrame" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/groupFrame"

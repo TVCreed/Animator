@@ -7,14 +7,12 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.HorizontalScrollView;
 import android.widget.Toast;
 import com.flask.colorpicker.ColorPickerView;
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
-import java.security.acl.Group;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,12 +42,12 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.groupColors).setVisibility(View.VISIBLE);
         findViewById(R.id.groupFrame).setVisibility(View.GONE);
 
-        Button addColor = findViewById(R.id.add_color),
-            removeColor = findViewById(R.id.remove_color),
+        Button addColor = findViewById(R.id.btnAddColor),
+            removeColor = findViewById(R.id.btnRemoveColor),
             AddFrame = findViewById(R.id.btnAddFrame),
             RemoveFrame = findViewById(R.id.btnRemoveFrame),
-            PaletteBtn = findViewById(R.id.paletteButton),
-            FramesBtn = findViewById(R.id.frameButton);
+            PaletteBtn = findViewById(R.id.btnPalette),
+            FramesBtn = findViewById(R.id.btnFrame);
 
         PaletteBtn.setOnClickListener(v -> {
             findViewById(R.id.groupFrame).setVisibility(View.GONE);
@@ -105,8 +103,8 @@ public class MainActivity extends AppCompatActivity {
         fillWhite();
         colorAdapter = new ColorAdapter();
 
-        colorsView = findViewById(R.id.colors);
-        gridView = findViewById(R.id.gridView);
+        colorsView = findViewById(R.id.viewGridPalette);
+        gridView = findViewById(R.id.viewGridPixels);
         colorsView.setAdapter(colorAdapter);
         gridView.setAdapter(imageAdapter);
         gridView.setOnTouchListener((v, event) -> {

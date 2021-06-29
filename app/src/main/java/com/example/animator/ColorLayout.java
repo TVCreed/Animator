@@ -131,9 +131,9 @@ public enum ColorLayout {
         // Attach left of palette to left of screen
         // Attach top of palette to top of screen
         // Attach bottom of palette to top of frame's GridView
-        set.connect(R.id.colors, ConstraintSet.LEFT, R.id.constraintlayout, ConstraintSet.LEFT);
-        set.connect(R.id.colors, ConstraintSet.TOP, R.id.constraintlayout, ConstraintSet.TOP);
-        set.connect(R.id.colors, ConstraintSet.BOTTOM, R.id.gridView, ConstraintSet.TOP);
+        set.connect(R.id.viewGridPalette, ConstraintSet.LEFT, R.id.constraintlayout, ConstraintSet.LEFT);
+        set.connect(R.id.viewGridPalette, ConstraintSet.TOP, R.id.constraintlayout, ConstraintSet.TOP);
+        set.connect(R.id.viewGridPalette, ConstraintSet.BOTTOM, R.id.viewGridPixels, ConstraintSet.TOP);
 
         // Overwrite current layout constraints
         set.applyTo(layout);
