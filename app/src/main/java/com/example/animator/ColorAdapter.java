@@ -43,7 +43,6 @@ public class ColorAdapter extends BaseAdapter {
         pixelView.setOnClickListener(v -> {
             if (activity.isRemovingColor()) {
                 activity.removePixelColor(position);
-                activity.setRemovingColor(false);
 
                 applyGrid(getCount(), activity.getColorsView());
             } else activity.setSelectedColor(pixel);

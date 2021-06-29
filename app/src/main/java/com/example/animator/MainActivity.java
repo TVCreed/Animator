@@ -1,9 +1,11 @@
 package com.example.animator;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean removingColor = false;
     private ImageAdapter imageAdapter = new ImageAdapter(MainActivity.this);
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
         removeColor.setOnClickListener(v -> {
             removingColor = !removingColor;
 
-            if (removingColor) Toast.makeText(this, "Click on a color to remove it or press remove color again to cancel.", Toast.LENGTH_SHORT).show();
-            else Toast.makeText(this, "Remove color cancelled.", Toast.LENGTH_SHORT).show();
+            if (removingColor) removeColor.getBackground().setTint(getResources().getColor(R.color.red));
+            else removeColor.getBackground().setTint(getResources().getColor(R.color.gray));
         });
 
         FramesBtn.setOnClickListener(v -> {
