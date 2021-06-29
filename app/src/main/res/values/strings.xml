@@ -9,4 +9,6 @@
     <string name="select_color_btn_txt">Select Color</string>
     <string name="btnUndo">«</string>
     <string name="btnRedo">»</string>
+    <string name="btnPrevFrame">«</string>
+    <string name="btnNextFrame">»</string>
 </resources>
