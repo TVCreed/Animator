@@ -4,7 +4,7 @@ import java.util.List;
 
 public class FrameArray {
     private int framePos = 0;
-    List<Frame> Frames;
+    private List<Frame> Frames;
 
     public void AddFrame(Frame f) {
         Frames.add(f);
@@ -16,5 +16,17 @@ public class FrameArray {
 
     public Frame getFrame(int pos) {
         return Frames.get(pos);
+    }
+
+    public int getPos() {
+        return framePos;
+    }
+
+    public void addPos() {
+        framePos++;
+    }
+
+    public void subPos() {
+        framePos--;
     }
 }

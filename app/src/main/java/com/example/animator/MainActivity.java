@@ -1,8 +1,10 @@
 package com.example.animator;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -90,12 +92,30 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.groupFrame).setVisibility(View.VISIBLE);
         });
         AddFrame.setOnClickListener(v -> {
-
-            Toast.makeText(this, "Frame Added", Toast.LENGTH_SHORT).show();
+            AlertDialog.Builder confirm = new AlertDialog.Builder(this);
+            confirm.setTitle("Add Frame");
+            confirm.setMessage("Would you like to add this frame?");
+            confirm.setPositiveButton("Yes", (dialog, which) -> {
+                SavedFrames.AddFrame(new Frame(pixels));
+                Toast.makeText(this, "Frame Added", Toast.LENGTH_SHORT).show();
+            });
+            confirm.setNegativeButton("No", (dialog, which) -> {
+                dialog.dismiss();
+            });
+            confirm.show();
         });
         RemoveFrame.setOnClickListener(v -> {
-
-            Toast.makeText(this, "Frame Removed", Toast.LENGTH_SHORT).show();
+            AlertDialog.Builder confirm = new AlertDialog.Builder(this);
+            confirm.setTitle("Remove Frame");
+            confirm.setMessage("Are you sure you want to remove this frame?");
+            confirm.setPositiveButton("Yes", (dialog, which) -> {
+                SavedFrames.RemoveFrame(SavedFrames.getFrame(SavedFrames.getPos()));
+                Toast.makeText(this, "Frame Removed", Toast.LENGTH_SHORT).show();
+            });
+            confirm.setNegativeButton("No", (dialog, which) -> {
+                dialog.dismiss();
+            });
+            confirm.show();
         });
 
 
