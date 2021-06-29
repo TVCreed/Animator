@@ -82,7 +82,9 @@ public class MainActivity extends AppCompatActivity {
         );
         removeColor.setOnClickListener(v -> {
             removingColor = !removingColor;
-            Toast.makeText(this, "Click on a color to remove it or press remove color again to cancel.", Toast.LENGTH_SHORT).show();
+
+            if (removingColor) Toast.makeText(this, "Click on a color to remove it or press remove color again to cancel.", Toast.LENGTH_SHORT).show();
+            else Toast.makeText(this, "Remove color cancelled.", Toast.LENGTH_SHORT).show();
         });
 
         FramesBtn.setOnClickListener(v -> {
