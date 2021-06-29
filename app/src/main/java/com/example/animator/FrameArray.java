@@ -15,8 +15,8 @@ public class FrameArray {
         Frames.add(f);
     }
 
-    public void RemoveFrame(Frame f) {
-        Frames.remove(f);
+    public void RemoveFrame() {
+        Frames.remove(framePos);
     }
 
     public Frame getFrame(int pos) {
@@ -45,5 +45,9 @@ public class FrameArray {
             }
         }
         return false;
+    }
+
+    public int getSize() {
+        return Frames.size();
     }
 }

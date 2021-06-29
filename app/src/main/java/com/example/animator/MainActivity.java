@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
             confirm.setMessage("Would you like to add this frame?");
             confirm.setPositiveButton("Yes", (dialog, which) -> {
                 SavedFrames.AddFrame(new Frame(pixels));
+                SavedFrames.framePos++;
                 Toast.makeText(this, "Frame Added", Toast.LENGTH_SHORT).show();
             });
             confirm.setNegativeButton("No", (dialog, which) -> {
@@ -120,17 +121,22 @@ public class MainActivity extends AppCompatActivity {
             confirm.show();
         });
         RemoveFrame.setOnClickListener(v -> {
-            AlertDialog.Builder confirm = new AlertDialog.Builder(this);
-            confirm.setTitle("Remove Frame");
-            confirm.setMessage("Are you sure you want to remove this frame?");
-            confirm.setPositiveButton("Yes", (dialog, which) -> {
-                SavedFrames.RemoveFrame(SavedFrames.getFrame(SavedFrames.getPos()));
-                Toast.makeText(this, "Frame Removed", Toast.LENGTH_SHORT).show();
-            });
-            confirm.setNegativeButton("No", (dialog, which) -> {
-                dialog.dismiss();
-            });
-            confirm.show();
+            if (SavedFrames.getSize() > 0) {
+                AlertDialog.Builder confirm = new AlertDialog.Builder(this);
+                confirm.setTitle("Remove Frame");
+                confirm.setMessage("Are you sure you want to remove this frame?");
+                confirm.setPositiveButton("Yes", (dialog, which) -> {
+                    SavedFrames.RemoveFrame();
+                    SavedFrames.framePos--;
+                    Toast.makeText(this, "Frame Removed", Toast.LENGTH_SHORT).show();
+                });
+                confirm.setNegativeButton("No", (dialog, which) -> {
+                    dialog.dismiss();
+                });
+                confirm.show();
+            } else {
+                Toast.makeText(this, "There are no saved frames to remove", Toast.LENGTH_SHORT).show();
+            }
         });
 
         NextFrameBtn.setOnClickListener(v -> {
