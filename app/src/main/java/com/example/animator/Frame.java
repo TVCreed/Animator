@@ -7,9 +7,10 @@ import static com.example.animator.MainActivity.PIXELS;
 public class Frame {
     private Pixel[] pixels = new Pixel[PIXELS];
     public List<Pixel[]> changeHistory;
+    private int historyPos = 0;
 
     public Frame() {
-        
+
     }
 
     public Frame(Pixel[] inPixels) {
