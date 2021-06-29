@@ -93,10 +93,12 @@ public class MainActivity extends AppCompatActivity {
         });
         AddFrame.setOnClickListener(v -> {
 //            SavedFrames.AddFrame(new Frame(pixels));
+            Toast.makeText(this, "Frame Added", Toast.LENGTH_SHORT).show();
         });
         RemoveFrame.setOnClickListener(v -> {
 //            System.arraycopy(SavedFrames.getFrame(0).getPixels(), 0, pixels, 0, PIXELS);
 //            imageAdapter.notifyDataSetChanged();
+            Toast.makeText(this, "Frame Removed", Toast.LENGTH_SHORT).show();
         });
 
 
