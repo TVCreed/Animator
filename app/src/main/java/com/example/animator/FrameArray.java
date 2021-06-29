@@ -1,10 +1,10 @@
 package com.example.animator;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class FrameArray {
     private int framePos = 0;
-    ArrayList<Frame> Frames = new ArrayList<>(10);
+    List<Frame> Frames;
 
     public void AddFrame(Frame f) {
         Frames.add(f);
