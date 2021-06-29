@@ -1,12 +1,15 @@
 package com.example.animator;
 
+import java.util.List;
+
 import static com.example.animator.MainActivity.PIXELS;
 
 public class Frame {
     private Pixel[] pixels = new Pixel[PIXELS];
+    public List<Pixel[]> changeHistory;
 
     public Frame() {
-
+        
     }
 
     public Frame(Pixel[] inPixels) {
