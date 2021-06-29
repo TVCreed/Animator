@@ -19,6 +19,8 @@ import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
     public static final int PIXELS = 16*9;
@@ -43,6 +45,18 @@ public class MainActivity extends AppCompatActivity {
         FrameArray SavedFrames = new FrameArray();
 
         instance = this;
+
+        Timer timedColors = new Timer();
+        TimerTask addDefaultColors = new TimerTask() {
+            @Override
+            public void run() {
+                colors.add(new Pixel(0, 0, 0));
+                colors.add(new Pixel(255, 255, 255));
+                colorAdapter.notifyDataSetChanged();
+                timedColors.cancel();
+            }
+        };
+        timedColors.schedule(addDefaultColors, 1);
 
         findViewById(R.id.groupColors).setVisibility(View.VISIBLE);
         findViewById(R.id.groupFrame).setVisibility(View.GONE);
