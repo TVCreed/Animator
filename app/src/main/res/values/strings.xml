@@ -2,6 +2,7 @@
     <string name="app_name">Animator</string>
     <string name="btnFillWhite">Clear</string>
     <string name="btnAddFrame">+</string>
+    <string name="btnReplaceFrame">++</string>
     <string name="btnRemoveFrame">-</string>
     <string name="btnGetFrame">Get</string>
     <string name="btnPaletteV">Palette View</string>

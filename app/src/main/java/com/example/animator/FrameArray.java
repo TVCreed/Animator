@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FrameArray {
-    public int framePos = -1;
+    private int framePos = -1;
     private List<Frame> Frames = new ArrayList<>();
 
     public FrameArray()
@@ -27,9 +27,18 @@ public class FrameArray {
         return Frames.get(pos);
     }
 
+    public void setFrame(Pixel[] inPixels) {
+        Frames.get(framePos).FillFrame(inPixels);
+    }
+
     public int getPos()
     {
         return framePos;
+    }
+
+    public void setPos(int fp)
+    {
+        framePos = fp;
     }
 
     public boolean addPos()

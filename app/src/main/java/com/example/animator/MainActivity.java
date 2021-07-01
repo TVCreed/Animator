@@ -58,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
             UndoFrameBtn = findViewById(R.id.btnUndoFrame),
             RedoFrameBtn = findViewById(R.id.btnRedoFrame),
             NextFrameBtn = findViewById(R.id.btnNextFrame),
-            PrevFrameBtn = findViewById(R.id.btnPrevFrame);
+            PrevFrameBtn = findViewById(R.id.btnPrevFrame),
+            ReplaceFrameBtn = findViewById(R.id.btnReplaceFrame);
 
         PaletteBtn.setOnClickListener(v -> {
             findViewById(R.id.groupFrame).setVisibility(View.GONE);
@@ -103,8 +104,8 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.groupFrame).setVisibility(View.VISIBLE);
         });
         AddFrame.setOnClickListener(v -> {
-            if (SavedFrames.framePos == -1) {
-                SavedFrames.framePos = 0;
+            if (SavedFrames.getPos() == -1) {
+                SavedFrames.setPos(0);
             }
             AlertDialog.Builder confirm = new AlertDialog.Builder(this);
             confirm.setTitle("Add Frame");
@@ -127,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
                 confirm.setPositiveButton("Yes", (dialog, which) -> {
                     SavedFrames.RemoveFrame();
                     SavedFrames.subPos();
+                    loadPixels();
                     Toast.makeText(this, "Frame Removed", Toast.LENGTH_SHORT).show();
                 });
                 confirm.setNegativeButton("No", (dialog, which) -> {
@@ -135,6 +137,24 @@ public class MainActivity extends AppCompatActivity {
                 confirm.show();
             } else {
                 Toast.makeText(this, "There are no saved frames to remove", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        ReplaceFrameBtn.setOnClickListener(v -> {
+            if (SavedFrames.getSize() > 0) {
+                AlertDialog.Builder confirm = new AlertDialog.Builder(this);
+                confirm.setTitle("Replace Frame");
+                confirm.setMessage("Are you sure you want to overwrite this frame?");
+                confirm.setPositiveButton("Yes", (dialog, which) -> {
+                    SavedFrames.setFrame(pixels);
+                    Toast.makeText(this, "Frame Replaced", Toast.LENGTH_SHORT).show();
+                });
+                confirm.setNegativeButton("No", (dialog, which) -> {
+                    dialog.dismiss();
+                });
+                confirm.show();
+            } else {
+                Toast.makeText(this, "There are no frames to replace", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -182,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loadPixels() {
-        System.arraycopy(SavedFrames.getFrame(SavedFrames.framePos).getPixels(), 0, pixels, 0, PIXELS);
+        System.arraycopy(SavedFrames.getFrame(SavedFrames.getPos()).getPixels(), 0, pixels, 0, PIXELS);
         imageAdapter.notifyDataSetChanged();
     }
 
