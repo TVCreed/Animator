@@ -58,8 +58,7 @@ public class MainActivity extends AppCompatActivity {
             UndoFrameBtn = findViewById(R.id.btnUndoFrame),
             RedoFrameBtn = findViewById(R.id.btnRedoFrame),
             NextFrameBtn = findViewById(R.id.btnNextFrame),
-            PrevFrameBtn = findViewById(R.id.btnPrevFrame),
-            SwitchBtn = findViewById(R.id.btnSwitch);
+            PrevFrameBtn = findViewById(R.id.btnPrevFrame);
 
         PaletteBtn.setOnClickListener(v -> {
             findViewById(R.id.groupFrame).setVisibility(View.GONE);
@@ -148,10 +147,6 @@ public class MainActivity extends AppCompatActivity {
             if (SavedFrames.subPos()) {
                 loadPixels();
             }
-        });
-
-        SwitchBtn.setOnClickListener(v -> {
-
         });
 
 
