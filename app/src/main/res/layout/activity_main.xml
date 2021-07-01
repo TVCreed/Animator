@@ -8,6 +8,13 @@
     android:background="@color/black"
     tools:context=".MainActivity">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.56" />
+
     <GridView
         android:id="@+id/viewGridPalette"
         android:layout_width="146dp"
@@ -221,9 +228,27 @@
         android:id="@+id/groupFrame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="btnAddFrame,btnRemoveFrame,btnPrevFrame,btnNextFrame,btnReplaceFrame" />
+        app:constraint_referenced_ids="btnAddFrame,btnRemoveFrame,btnPrevFrame,btnNextFrame,btnReplaceFrame,btnPlay" />
 
-<!--    <Button-->
+    <Button
+        android:id="@+id/btnPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnPlay"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.31" />
+
+    <!--    <Button-->
 <!--        android:id="@+id/btnSwitch"-->
 <!--        android:layout_width="143dp"-->
 <!--        android:layout_height="78dp"-->

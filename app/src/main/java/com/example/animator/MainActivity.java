@@ -3,28 +3,25 @@ package com.example.animator;
 import androidx.appcompat.app.AlertDialog;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.Switch;
 import android.widget.Toast;
 import com.flask.colorpicker.ColorPickerView;
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
     public static final int PIXELS = 16*9;
+    private final Handler playHandler = new Handler();
+    private Runnable playFrames;
     private static MainActivity instance;
     private GridView colorsView;
     static public ColorAdapter colorAdapter;
@@ -59,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
             RedoFrameBtn = findViewById(R.id.btnRedoFrame),
             NextFrameBtn = findViewById(R.id.btnNextFrame),
             PrevFrameBtn = findViewById(R.id.btnPrevFrame),
-            ReplaceFrameBtn = findViewById(R.id.btnReplaceFrame);
+            ReplaceFrameBtn = findViewById(R.id.btnReplaceFrame),
+            PlayBtn = findViewById(R.id.btnPlay);
 
         PaletteBtn.setOnClickListener(v -> {
             findViewById(R.id.groupFrame).setVisibility(View.GONE);
@@ -169,6 +167,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        PlayBtn.setOnClickListener(v -> {
+            SavedFrames.setPos(0);
+            playFrames = new Runnable() {
+                @Override
+                public void run() {
+                    if (SavedFrames.getPos() == 0) {
+                        loadPixels();
+                        SavedFrames.addPos();
+                        playHandler.postDelayed(this, 100);
+                    }
+                    else if (SavedFrames.addPos()) {
+                        loadPixels();
+                        playHandler.postDelayed(this, 100);
+                    } else {
+                        ShowToast("No frames to play");
+                    }
+                    if (SavedFrames.getPos() == SavedFrames.getSize()-1) {
+                        playHandler.removeCallbacksAndMessages(null);
+                    }
+                }
+            };
+            playFrames.run();
+        });
+
 
         fillWhite();
         colorAdapter = new ColorAdapter();
@@ -199,6 +221,10 @@ public class MainActivity extends AppCompatActivity {
 
             return false;
         });
+    }
+
+    public void ShowToast(String str) {
+        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
     }
 
     public void loadPixels() {

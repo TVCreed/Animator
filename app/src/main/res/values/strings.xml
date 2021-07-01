@@ -15,4 +15,5 @@
     <string name="txtAppDesc">A little drawing app by <br/> Mason Dunkle, Dustin Dell, Tyler Shearer, and Nick Anderson</string>
     <string name="btnSwitch">Switch to Editor</string>
     <string name="btnSwitch2">Switch to Frames</string>
+    <string name="btnPlay">Play</string>
 </resources>
