@@ -118,8 +118,9 @@ public class MainActivity extends AppCompatActivity {
             });
             confirm.show();
         });
+
         RemoveFrame.setOnClickListener(v -> {
-            if (SavedFrames.getSize() > 0) {
+            if (SavedFrames.getSize() > 1) {
                 AlertDialog.Builder confirm = new AlertDialog.Builder(this);
                 confirm.setTitle("Remove Frame");
                 confirm.setMessage("Are you sure you want to remove this frame?");
