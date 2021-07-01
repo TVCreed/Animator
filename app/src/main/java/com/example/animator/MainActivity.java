@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
             confirm.setMessage("Would you like to add this frame?");
             confirm.setPositiveButton("Yes", (dialog, which) -> {
                 SavedFrames.AddFrame(new Frame(pixels));
-                SavedFrames.framePos++;
+                SavedFrames.addPos();
                 Toast.makeText(this, "Frame Added", Toast.LENGTH_SHORT).show();
             });
             confirm.setNegativeButton("No", (dialog, which) -> {
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                 confirm.setMessage("Are you sure you want to remove this frame?");
                 confirm.setPositiveButton("Yes", (dialog, which) -> {
                     SavedFrames.RemoveFrame();
-                    SavedFrames.framePos--;
+                    SavedFrames.subPos();
                     Toast.makeText(this, "Frame Removed", Toast.LENGTH_SHORT).show();
                 });
                 confirm.setNegativeButton("No", (dialog, which) -> {
@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loadPixels() {
-        pixels = SavedFrames.getFrame(SavedFrames.framePos).getPixels();
+        System.arraycopy(SavedFrames.getFrame(SavedFrames.framePos).getPixels(), 0, pixels, 0, PIXELS);
         imageAdapter.notifyDataSetChanged();
     }
 

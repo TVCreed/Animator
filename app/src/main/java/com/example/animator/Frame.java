@@ -10,15 +10,18 @@ public class Frame {
     public List<Pixel[]> changeHistory = new ArrayList<>();
     private int historyPos = 0;
 
-    public Frame(Pixel[] inPixels) {
+    public Frame(Pixel[] inPixels)
+    {
         FillFrame(inPixels);
     }
 
-    public void FillFrame(Pixel[] inPixels) {
+    public void FillFrame(Pixel[] inPixels)
+    {
         System.arraycopy(inPixels, 0, pixels, 0, PIXELS);
     }
 
-    public Pixel[] getPixels() {
+    public Pixel[] getPixels()
+    {
         return pixels;
     }
 }

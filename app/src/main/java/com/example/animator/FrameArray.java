@@ -7,27 +7,33 @@ public class FrameArray {
     public int framePos = -1;
     private List<Frame> Frames = new ArrayList<>();
 
-    public FrameArray() {
+    public FrameArray()
+    {
 
     }
 
-    public void AddFrame(Frame f) {
+    public void AddFrame(Frame f)
+    {
         Frames.add(f);
     }
 
-    public void RemoveFrame() {
+    public void RemoveFrame()
+    {
         Frames.remove(framePos);
     }
 
-    public Frame getFrame(int pos) {
+    public Frame getFrame(int pos)
+    {
         return Frames.get(pos);
     }
 
-    public int getPos() {
+    public int getPos()
+    {
         return framePos;
     }
 
-    public boolean addPos() {
+    public boolean addPos()
+    {
         if (Frames != null) {
             if (framePos < Frames.size()-1 && framePos >= 0) {
                 framePos++;
@@ -37,7 +43,8 @@ public class FrameArray {
         return false;
     }
 
-    public boolean subPos() {
+    public boolean subPos()
+    {
         if (Frames != null) {
             if (framePos <= Frames.size()-1 && framePos > 0) {
                 framePos--;
@@ -47,7 +54,8 @@ public class FrameArray {
         return false;
     }
 
-    public int getSize() {
+    public int getSize()
+    {
         return Frames.size();
     }
 }
