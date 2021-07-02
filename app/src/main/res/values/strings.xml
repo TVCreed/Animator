@@ -4,6 +4,7 @@
     <string name="btnAddFrame">+</string>
     <string name="btnReplaceFrame">++</string>
     <string name="btnRemoveFrame">-</string>
+    <string name="btnRemoveAllFrames">--</string>
     <string name="btnGetFrame">Get</string>
     <string name="btnPaletteV">Palette View</string>
     <string name="btnFramesV">Frame View</string>

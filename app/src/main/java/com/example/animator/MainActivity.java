@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
             NextFrameBtn = findViewById(R.id.btnNextFrame),
             PrevFrameBtn = findViewById(R.id.btnPrevFrame),
             ReplaceFrameBtn = findViewById(R.id.btnReplaceFrame),
+            RemoveAllFramesBtn = findViewById(R.id.btnRemoveAllFrames),
             PlayBtn = findViewById(R.id.btnPlay);
 
         PaletteBtn.setOnClickListener(v -> {
@@ -139,6 +140,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        RemoveAllFramesBtn.setOnClickListener(v -> {
+            if (SavedFrames.getSize() > 1) {
+                AlertDialog.Builder confirm = new AlertDialog.Builder(this);
+                confirm.setTitle("Remove All Frames");
+                confirm.setMessage("Are you sure you want to clear teh saved frames?");
+                confirm.setPositiveButton("Yes", (dialog, which) -> {
+                    SavedFrames.clearFrames();
+                    fillWhite();
+                    Toast.makeText(this, "Frames Removed", Toast.LENGTH_SHORT).show();
+                });
+                confirm.setNegativeButton("No", (dialog, which) -> {
+                    dialog.dismiss();
+                });
+                confirm.show();
+            } else {
+                Toast.makeText(this, "There are no saved frames to remove", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         ReplaceFrameBtn.setOnClickListener(v -> {
             if (SavedFrames.getSize() > 0) {
                 AlertDialog.Builder confirm = new AlertDialog.Builder(this);
@@ -169,27 +189,28 @@ public class MainActivity extends AppCompatActivity {
         });
 
         PlayBtn.setOnClickListener(v -> {
-            SavedFrames.setPos(0);
             playFrames = new Runnable() {
                 @Override
                 public void run() {
-                    if (SavedFrames.getPos() == 0) {
+                    if (SavedFrames.getPos() == -1) {
+                        SavedFrames.forceAdd();
                         loadPixels();
-                        SavedFrames.addPos();
-                        playHandler.postDelayed(this, 100);
-                    }
-                    else if (SavedFrames.addPos()) {
+                        playHandler.postDelayed(this, 200);
+                    } else if (SavedFrames.addPos()) {
                         loadPixels();
-                        playHandler.postDelayed(this, 100);
-                    } else {
-                        ShowToast("No frames to play");
+                        playHandler.postDelayed(this, 200);
                     }
-                    if (SavedFrames.getPos() == SavedFrames.getSize()-1) {
+                    if (SavedFrames.getPos() == SavedFrames.getSize() - 1) {
                         playHandler.removeCallbacksAndMessages(null);
                     }
                 }
             };
-            playFrames.run();
+            if (SavedFrames.getSize() > 1) {
+                SavedFrames.setPos(-1);
+                playFrames.run();
+            } else {
+                ShowToast("Not Enough frames to play");
+            }
         });
 
 
@@ -245,6 +266,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < PIXELS; i++) {
             pixels[i] = new Pixel(255, 255, 255);
         }
+        imageAdapter.notifyDataSetChanged();
     }
 
     public ColorAdapter getColorAdapter() {

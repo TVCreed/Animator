@@ -172,6 +172,22 @@
         app:layout_constraintVertical_bias="0.055" />
 
     <Button
+        android:id="@+id/btnRemoveAllFrames"
+        android:layout_width="60dp"
+        android:layout_height="45dp"
+        android:text="@string/btnRemoveAllFrames"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:backgroundTint="@android:color/holo_red_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.196"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.055" />
+
+    <Button
         android:id="@+id/btnRemoveColor"
         android:layout_width="60dp"
         android:layout_height="45dp"
@@ -228,7 +244,7 @@
         android:id="@+id/groupFrame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="btnAddFrame,btnRemoveFrame,btnPrevFrame,btnNextFrame,btnReplaceFrame,btnPlay" />
+        app:constraint_referenced_ids="btnAddFrame,btnRemoveFrame,btnPrevFrame,btnNextFrame,btnReplaceFrame,btnPlay,btnRemoveAllFrames" />
 
     <Button
         android:id="@+id/btnPlay"

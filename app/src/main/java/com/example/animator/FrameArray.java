@@ -52,10 +52,14 @@ public class FrameArray {
         return false;
     }
 
+    public void forceAdd() {
+        framePos++;
+    }
+
     public boolean subPos()
     {
         if (Frames != null) {
-            if (framePos <= Frames.size()-1 && framePos > 0) {
+            if (framePos <= Frames.size() && framePos > 0) {
                 framePos--;
                 return true;
             }
@@ -66,5 +70,10 @@ public class FrameArray {
     public int getSize()
     {
         return Frames.size();
+    }
+
+    public void clearFrames() {
+        Frames.clear();
+        framePos = -1;
     }
 }
