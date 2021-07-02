@@ -17,6 +17,7 @@ import com.flask.colorpicker.ColorPickerView;
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
     public static final int PIXELS = 16*9;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private Pixel selectedColor = new Pixel(0, 0, 0);
     private boolean removingColor = false;
     private ImageAdapter imageAdapter = new ImageAdapter(MainActivity.this);
+    private Stack<Change> changes = new Stack<>(), reverts = new Stack<>();
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("ClickableViewAccessibility")
@@ -58,6 +60,25 @@ public class MainActivity extends AppCompatActivity {
             PrevFrameBtn = findViewById(R.id.btnPrevFrame),
             ReplaceFrameBtn = findViewById(R.id.btnReplaceFrame),
             PlayBtn = findViewById(R.id.btnPlay);
+
+        UndoFrameBtn.setOnClickListener(v -> {
+            if (changes.empty()) return;
+
+            System.out.println("UNDO");
+            Change change = changes.pop();
+
+            reverts.add(change);
+            change.undo();
+        });
+
+        RedoFrameBtn.setOnClickListener(v -> {
+            if (reverts.empty()) return;
+            System.out.println("REDO");
+            Change revert = reverts.pop();
+
+            changes.add(revert);
+            revert.redo();
+        });
 
         PaletteBtn.setOnClickListener(v -> {
             findViewById(R.id.groupFrame).setVisibility(View.GONE);
@@ -160,11 +181,15 @@ public class MainActivity extends AppCompatActivity {
         NextFrameBtn.setOnClickListener(v -> {
             if (SavedFrames.addPos()) {
                 loadPixels();
+                changes.clear();
+                reverts.clear();
             }
         });
         PrevFrameBtn.setOnClickListener(v -> {
             if (SavedFrames.subPos()) {
                 loadPixels();
+                changes.clear();
+                reverts.clear();
             }
         });
 
@@ -174,11 +199,15 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     if (SavedFrames.getPos() == 0) {
+                        changes.clear();
+                        reverts.clear();
                         loadPixels();
                         SavedFrames.addPos();
                         playHandler.postDelayed(this, 100);
                     }
                     else if (SavedFrames.addPos()) {
+                        changes.clear();
+                        reverts.clear();
                         loadPixels();
                         playHandler.postDelayed(this, 100);
                     } else {
@@ -214,8 +243,15 @@ public class MainActivity extends AppCompatActivity {
                 case MotionEvent.ACTION_DOWN:
                 case MotionEvent.ACTION_MOVE:
                 case MotionEvent.ACTION_UP: {
+                    Pixel prev = getPixel(pos);
                     setPixel(pos, selectedColor);
                     imageAdapter.notifyDataSetChanged();
+
+                    if (changes.empty() ||
+                            changes.peek().getPos() != pos ||
+                            (changes.peek().getPos() == pos && changes.peek().getTo() != selectedColor)) {
+                        changes.push(new Change(pos, prev, selectedColor));
+                    }
                 } break;
                 default: break;
             }
@@ -229,6 +265,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loadPixels() {
+        if (SavedFrames.getPos() >= SavedFrames.getSize()) return;
+
         System.arraycopy(SavedFrames.getFrame(SavedFrames.getPos()).getPixels(), 0, pixels, 0, PIXELS);
         imageAdapter.notifyDataSetChanged();
     }
@@ -290,6 +328,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void setRemovingColor(boolean removingColor) {
         this.removingColor = removingColor;
+    }
+
+    public FrameArray getSavedFrames() {
+        return SavedFrames;
+    }
+
+    public ImageAdapter getImageAdapter() {
+        return imageAdapter;
     }
 
     public static Pixel fromHex(int hex) {
