@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">Animator</string>
-<<<<<<< Updated upstream
-=======
     <string name="btnFillWhite">Clear</string>
     <string name="btnAddFrame">+</string>
     <string name="btnReplaceFrame">++</string>
@@ -11,13 +9,12 @@
     <string name="btnPaletteV">Palette View</string>
     <string name="btnFramesV">Frame View</string>
     <string name="select_color_btn_txt">Select Color</string>
-    <string name="btnUndo">Undo</string>
-    <string name="btnRedo">Redo</string>
+    <string name="btnUndo">«</string>
+    <string name="btnRedo">»</string>
     <string name="btnPrevFrame">«</string>
     <string name="btnNextFrame">»</string>
     <string name="txtAppDesc">A little drawing app by <br/> Mason Dunkle, Dustin Dell, Tyler Shearer, and Nick Anderson</string>
     <string name="btnSwitch">Switch to Editor</string>
     <string name="btnSwitch2">Switch to Frames</string>
     <string name="btnPlay">Play</string>
->>>>>>> Stashed changes
 </resources>
