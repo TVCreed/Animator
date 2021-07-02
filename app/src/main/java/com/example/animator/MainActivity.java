@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
             confirm.setMessage("Would you like to add this frame?");
             confirm.setPositiveButton("Yes", (dialog, which) -> {
                 SavedFrames.AddFrame(new Frame(pixels));
-                SavedFrames.addPos();
+                SavedFrames.setPos(SavedFrames.getSize() - 1);
                 Toast.makeText(this, "Frame Added", Toast.LENGTH_SHORT).show();
             });
             confirm.setNegativeButton("No", (dialog, which) -> {
@@ -121,14 +121,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
         RemoveFrame.setOnClickListener(v -> {
-            if (SavedFrames.getSize() > 1) {
+            if (SavedFrames.getSize() >= 1) {
                 AlertDialog.Builder confirm = new AlertDialog.Builder(this);
                 confirm.setTitle("Remove Frame");
                 confirm.setMessage("Are you sure you want to remove this frame?");
                 confirm.setPositiveButton("Yes", (dialog, which) -> {
-                    SavedFrames.RemoveFrame();
-                    SavedFrames.subPos();
-                    loadPixels();
+                    if (SavedFrames.getSize() == 1) {
+                        SavedFrames.clearFrames();
+                        fillWhite();
+                    } else {
+                        SavedFrames.RemoveFrame();
+                        SavedFrames.subPos();
+                        loadPixels();
+                    }
                     Toast.makeText(this, "Frame Removed", Toast.LENGTH_SHORT).show();
                 });
                 confirm.setNegativeButton("No", (dialog, which) -> {
