@@ -168,7 +168,7 @@
             android:background="@drawable/button3_layout"
             android:text="@string/btnFramesV"
             android:textColor="@color/black"
-            android:textSize="15px"
+            android:textSize="10sp"
             android:textStyle="bold"
             app:backgroundTint="@android:color/holo_blue_bright"
             app:backgroundTintMode="multiply"
@@ -187,7 +187,7 @@
             android:background="@drawable/button3_layout"
             android:text="@string/btnPaletteV"
             android:textColor="@color/black"
-            android:textSize="15px"
+            android:textSize="10sp"
             android:textStyle="bold"
             app:backgroundTint="@android:color/holo_blue_bright"
             app:backgroundTintMode="multiply"
@@ -208,7 +208,6 @@
                 android:id="@+id/groupColors"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
                 app:constraint_referenced_ids="btnRemoveColor,btnAddColor,paletteLayout" />
 
             <Button
@@ -222,7 +221,7 @@
                 android:background="@drawable/button3_layout"
                 android:text="@string/btnRemoveFrame"
                 android:textColor="@color/white"
-                android:textSize="10dp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:backgroundTint="@color/red"
                 app:backgroundTintMode="multiply"
@@ -240,7 +239,7 @@
                 android:background="@drawable/button3_layout"
                 android:text="@string/btnAddFrame"
                 android:textColor="@color/black"
-                android:textSize="10dp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:backgroundTint="@color/green"
                 app:backgroundTintMode="multiply"
