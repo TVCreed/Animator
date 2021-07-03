@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
             if (SavedFrames.getSize() > 1) {
                 AlertDialog.Builder confirm = new AlertDialog.Builder(this);
                 confirm.setTitle("Remove All Frames");
-                confirm.setMessage("Are you sure you want to clear teh saved frames?");
+                confirm.setMessage("Are you sure you want to clear the saved frames?");
                 confirm.setPositiveButton("Yes", (dialog, which) -> {
                     SavedFrames.clearFrames();
                     fillWhite();
