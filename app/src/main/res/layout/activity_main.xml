@@ -20,35 +20,52 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <Button
+            android:id="@+id/btnPalette"
+            android:layout_width="75dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/button3_layout"
+            android:text="@string/btnPaletteV"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:backgroundTint="@android:color/holo_blue_bright"
+            app:backgroundTintMode="multiply"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnFrame"
+            android:layout_width="75dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/button3_layout"
+            android:text="@string/btnFramesV"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:backgroundTint="@android:color/holo_blue_bright"
+            app:backgroundTintMode="multiply"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnPalette" />
+
         <androidx.constraintlayout.widget.Group
             android:id="@+id/groupFrame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            app:constraint_referenced_ids="btnAddFrame,btnRemoveFrame,btnPrevFrame,btnNextFrame,btnReplaceFrame,btnPlay,btnRemoveAllFrames,btnRedoFrame,btnUndoFrame" />
-
-        <Button
-            android:id="@+id/btnUndoFrame"
-            android:layout_width="45dp"
-            android:layout_height="40dp"
-            android:background="@drawable/button3_layout"
-            android:text="@string/btnUndo"
-            android:textColor="@color/white"
-            android:textSize="10px"
-            android:textStyle="bold"
-            app:backgroundTint="@color/red"
-            app:backgroundTintMode="multiply"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btnRemoveAllFrames"
-            app:layout_constraintTop_toBottomOf="@+id/btnRedoFrame"
-            app:layout_constraintVertical_bias="0.0" />
+            app:constraint_referenced_ids="btnAddFrame,btnRemoveFrame,btnPrevFrame,btnNextFrame,btnReplaceFrame,btnPlay,btnRemoveAllFrames" />
 
         <Button
             android:id="@+id/btnNextFrame"
             android:layout_width="45dp"
             android:layout_height="40dp"
-            android:layout_marginStart="96dp"
-            android:layout_marginLeft="96dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginLeft="140dp"
             android:layout_marginTop="4dp"
             android:background="@drawable/button3_layout"
             android:text="@string/btnNextFrame"
@@ -57,9 +74,7 @@
             android:textStyle="bold"
             app:backgroundTint="@color/green"
             app:backgroundTintMode="multiply"
-            app:layout_constraintEnd_toStartOf="@+id/btnPalette"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/btnRedoFrame"
+            app:layout_constraintStart_toEndOf="@+id/btnReplaceFrame"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
@@ -70,7 +85,7 @@
             android:background="@drawable/button3_layout"
             android:text="@string/btnReplaceFrame"
             android:textColor="@color/black"
-            android:textSize="10sp"
+            android:textSize="15sp"
             android:textStyle="bold"
             app:backgroundTint="@color/green"
             app:backgroundTintMode="multiply"
@@ -81,8 +96,8 @@
             android:id="@+id/btnPrevFrame"
             android:layout_width="45dp"
             android:layout_height="40dp"
-            android:layout_marginStart="96dp"
-            android:layout_marginLeft="96dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginLeft="140dp"
             android:background="@drawable/button3_layout"
             android:text="@string/btnPrevFrame"
             android:textColor="@color/white"
@@ -90,8 +105,10 @@
             android:textStyle="bold"
             app:backgroundTint="@color/red"
             app:backgroundTintMode="multiply"
-            app:layout_constraintStart_toEndOf="@+id/btnUndoFrame"
-            app:layout_constraintTop_toBottomOf="@+id/btnNextFrame" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnRemoveAllFrames"
+            app:layout_constraintTop_toBottomOf="@+id/btnNextFrame"
+            app:layout_constraintVertical_bias="0.0" />
 
         <Button
             android:id="@+id/btnAddFrame"
@@ -103,7 +120,7 @@
             android:background="@drawable/button3_layout"
             android:text="@string/btnAddFrame"
             android:textColor="@color/black"
-            android:textSize="10sp"
+            android:textSize="15sp"
             android:textStyle="bold"
             app:backgroundTint="@color/green"
             app:backgroundTintMode="multiply"
@@ -119,7 +136,7 @@
             android:background="@drawable/button3_layout"
             android:text="@string/btnRemoveFrame"
             android:textColor="@color/white"
-            android:textSize="10dp"
+            android:textSize="15sp"
             android:textStyle="bold"
             app:backgroundTint="@color/red"
             app:backgroundTintMode="multiply"
@@ -129,28 +146,13 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <Button
-            android:id="@+id/btnRedoFrame"
-            android:layout_width="45dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="4dp"
-            android:background="@drawable/button3_layout"
-            android:text="@string/btnRedo"
-            android:textColor="@color/black"
-            android:textSize="10px"
-            android:textStyle="bold"
-            app:backgroundTint="@color/green"
-            app:backgroundTintMode="multiply"
-            app:layout_constraintStart_toEndOf="@+id/btnReplaceFrame"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
             android:id="@+id/btnRemoveAllFrames"
             android:layout_width="45dp"
             android:layout_height="40dp"
             android:background="@drawable/button3_layout"
             android:text="@string/btnRemoveAllFrames"
             android:textColor="@color/white"
-            android:textSize="10sp"
+            android:textSize="15sp"
             android:textStyle="bold"
             app:backgroundTint="@color/red"
             app:backgroundTintMode="multiply"
@@ -159,57 +161,22 @@
             app:layout_constraintTop_toBottomOf="@+id/btnReplaceFrame"
             app:layout_constraintVertical_bias="0.0" />
 
-        <Button
-            android:id="@+id/btnFrame"
-            android:layout_width="75dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:background="@drawable/button3_layout"
-            android:text="@string/btnFramesV"
-            android:textColor="@color/black"
-            android:textSize="15px"
-            android:textStyle="bold"
-            app:backgroundTint="@android:color/holo_blue_bright"
-            app:backgroundTintMode="multiply"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/btnUndoFrame"
-            app:layout_constraintTop_toBottomOf="@+id/btnPalette" />
-
-        <Button
-            android:id="@+id/btnPalette"
-            android:layout_width="75dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:background="@drawable/button3_layout"
-            android:text="@string/btnPaletteV"
-            android:textColor="@color/black"
-            android:textSize="15px"
-            android:textStyle="bold"
-            app:backgroundTint="@android:color/holo_blue_bright"
-            app:backgroundTintMode="multiply"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/paletteMenuLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="4dp">
+            tools:layout_editor_absoluteY="0dp">
 
             <androidx.constraintlayout.widget.Group
                 android:id="@+id/groupColors"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="visible"
-                app:constraint_referenced_ids="btnRemoveColor,btnAddColor,paletteLayout" />
+                app:constraint_referenced_ids="btnRemoveColor,btnAddColor,paletteLayout,btnRedoFrame,btnUndoFrame" />
 
             <Button
                 android:id="@+id/btnRemoveColor"
@@ -217,16 +184,13 @@
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="4dp"
                 android:background="@drawable/button3_layout"
                 android:text="@string/btnRemoveFrame"
                 android:textColor="@color/white"
-                android:textSize="10dp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 app:backgroundTint="@color/red"
                 app:backgroundTintMode="multiply"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnAddColor" />
 
@@ -240,26 +204,55 @@
                 android:background="@drawable/button3_layout"
                 android:text="@string/btnAddFrame"
                 android:textColor="@color/black"
-                android:textSize="10dp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 app:backgroundTint="@color/green"
                 app:backgroundTintMode="multiply"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <Button
+                android:id="@+id/btnRedoFrame"
+                android:layout_width="45dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/button3_layout"
+                android:text="@string/btnRedo"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/green"
+                app:backgroundTintMode="multiply"
+                app:layout_constraintStart_toEndOf="@+id/btnAddColor"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btnUndoFrame"
+                android:layout_width="45dp"
+                android:layout_height="40dp"
+                android:background="@drawable/button3_layout"
+                android:text="@string/btnUndo"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/red"
+                app:backgroundTintMode="multiply"
+                app:layout_constraintStart_toEndOf="@+id/btnRemoveColor"
+                app:layout_constraintTop_toBottomOf="@+id/btnRedoFrame" />
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/paletteLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="65dp"
-                android:layout_marginLeft="65dp"
+                android:layout_width="173dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="100dp"
                 android:layout_marginRight="100dp"
                 android:layout_marginBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btnRedoFrame"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <GridView
@@ -272,6 +265,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                 </GridView>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -287,10 +281,9 @@
             app:backgroundTintMode="multiply"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.4" />
+            app:layout_constraintVertical_bias="0.363" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.Guideline
@@ -302,8 +295,8 @@
 
     <GridView
         android:id="@+id/viewGridPixels"
-        android:layout_width="890px"
-        android:layout_height="1582px"
+        android:layout_width="320dp"
+        android:layout_height="569dp"
         android:background="@drawable/gridview_layout"
         android:columnWidth="24sp"
         android:horizontalSpacing="0sp"
