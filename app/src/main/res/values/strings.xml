@@ -9,8 +9,8 @@
     <string name="btnPaletteV">Palette View</string>
     <string name="btnFramesV">Frame View</string>
     <string name="select_color_btn_txt">Select Color</string>
-    <string name="btnUndo">«</string>
-    <string name="btnRedo">»</string>
+    <string name="btnUndo">UNDO</string>
+    <string name="btnRedo">REDO</string>
     <string name="btnPrevFrame">«</string>
     <string name="btnNextFrame">»</string>
     <string name="txtAppDesc">A little drawing app by <br/> Mason Dunkle, Dustin Dell, Tyler Shearer, and Nick Anderson</string>

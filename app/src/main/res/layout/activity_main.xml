@@ -5,8 +5,293 @@
     android:id="@+id/constraintlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@drawable/bg_layout"
     tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameMenuLayout"
+        android:layout_width="384dp"
+        android:layout_height="91dp"
+        android:layout_marginBottom="1dp"
+        android:background="@drawable/gridview_layout"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/viewGridPixels"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/groupFrame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="btnAddFrame,btnRemoveFrame,btnPrevFrame,btnNextFrame,btnReplaceFrame,btnPlay,btnRemoveAllFrames,btnRedoFrame,btnUndoFrame" />
+
+        <Button
+            android:id="@+id/btnUndoFrame"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:background="@drawable/button3_layout"
+            android:text="@string/btnUndo"
+            android:textColor="@color/white"
+            android:textSize="10px"
+            android:textStyle="bold"
+            app:backgroundTint="@color/red"
+            app:backgroundTintMode="multiply"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnRemoveAllFrames"
+            app:layout_constraintTop_toBottomOf="@+id/btnRedoFrame"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/btnNextFrame"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="96dp"
+            android:layout_marginLeft="96dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/button3_layout"
+            android:text="@string/btnNextFrame"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/green"
+            app:backgroundTintMode="multiply"
+            app:layout_constraintEnd_toStartOf="@+id/btnPalette"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/btnRedoFrame"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnReplaceFrame"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/button3_layout"
+            android:text="@string/btnReplaceFrame"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/green"
+            app:backgroundTintMode="multiply"
+            app:layout_constraintStart_toEndOf="@+id/btnAddFrame"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnPrevFrame"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="96dp"
+            android:layout_marginLeft="96dp"
+            android:background="@drawable/button3_layout"
+            android:text="@string/btnPrevFrame"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/red"
+            app:backgroundTintMode="multiply"
+            app:layout_constraintStart_toEndOf="@+id/btnUndoFrame"
+            app:layout_constraintTop_toBottomOf="@+id/btnNextFrame" />
+
+        <Button
+            android:id="@+id/btnAddFrame"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/button3_layout"
+            android:text="@string/btnAddFrame"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/green"
+            app:backgroundTintMode="multiply"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnRemoveFrame"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:background="@drawable/button3_layout"
+            android:text="@string/btnRemoveFrame"
+            android:textColor="@color/white"
+            android:textSize="10dp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/red"
+            app:backgroundTintMode="multiply"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnAddFrame"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/btnRedoFrame"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/button3_layout"
+            android:text="@string/btnRedo"
+            android:textColor="@color/black"
+            android:textSize="10px"
+            android:textStyle="bold"
+            app:backgroundTint="@color/green"
+            app:backgroundTintMode="multiply"
+            app:layout_constraintStart_toEndOf="@+id/btnReplaceFrame"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnRemoveAllFrames"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:background="@drawable/button3_layout"
+            android:text="@string/btnRemoveAllFrames"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/red"
+            app:backgroundTintMode="multiply"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnRemoveFrame"
+            app:layout_constraintTop_toBottomOf="@+id/btnReplaceFrame"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/btnFrame"
+            android:layout_width="75dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/button3_layout"
+            android:text="@string/btnFramesV"
+            android:textColor="@color/black"
+            android:textSize="15px"
+            android:textStyle="bold"
+            app:backgroundTint="@android:color/holo_blue_bright"
+            app:backgroundTintMode="multiply"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/btnUndoFrame"
+            app:layout_constraintTop_toBottomOf="@+id/btnPalette" />
+
+        <Button
+            android:id="@+id/btnPalette"
+            android:layout_width="75dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/button3_layout"
+            android:text="@string/btnPaletteV"
+            android:textColor="@color/black"
+            android:textSize="15px"
+            android:textStyle="bold"
+            app:backgroundTint="@android:color/holo_blue_bright"
+            app:backgroundTintMode="multiply"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/paletteMenuLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="4dp">
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/groupColors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:constraint_referenced_ids="btnRemoveColor,btnAddColor,paletteLayout" />
+
+            <Button
+                android:id="@+id/btnRemoveColor"
+                android:layout_width="45dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/button3_layout"
+                android:text="@string/btnRemoveFrame"
+                android:textColor="@color/white"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/red"
+                app:backgroundTintMode="multiply"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnAddColor" />
+
+            <Button
+                android:id="@+id/btnAddColor"
+                android:layout_width="45dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/button3_layout"
+                android:text="@string/btnAddFrame"
+                android:textColor="@color/black"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/green"
+                app:backgroundTintMode="multiply"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/paletteLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="65dp"
+                android:layout_marginLeft="65dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <GridView
+                    android:id="@+id/viewGridPalette"
+                    android:layout_width="146dp"
+                    android:layout_height="62dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </GridView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/btnPlay"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/button3_layout"
+            android:text="@string/btnPlay"
+            android:textColor="@color/black"
+            app:backgroundTint="@color/white"
+            app:backgroundTintMode="multiply"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.4" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -16,20 +301,10 @@
         app:layout_constraintGuide_percent="0.56" />
 
     <GridView
-        android:id="@+id/viewGridPalette"
-        android:layout_width="146dp"
-        android:layout_height="62dp"
-        app:layout_constraintBottom_toTopOf="@+id/viewGridPixels"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.294"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
-
-    <GridView
         android:id="@+id/viewGridPixels"
-        android:layout_width="365dp"
-        android:layout_height="648dp"
+        android:layout_width="890px"
+        android:layout_height="1582px"
+        android:background="@drawable/gridview_layout"
         android:columnWidth="24sp"
         android:horizontalSpacing="0sp"
         android:numColumns="9"
@@ -39,243 +314,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.875">
 
     </GridView>
-
-    <Button
-        android:id="@+id/btnNextFrame"
-        android:layout_width="60dp"
-        android:layout_height="45dp"
-        android:text="@string/btnNextFrame"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:backgroundTint="@android:color/holo_green_dark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.66"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/btnPrevFrame"
-        android:layout_width="60dp"
-        android:layout_height="45dp"
-        android:text="@string/btnPrevFrame"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:backgroundTint="@android:color/holo_red_dark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.66"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.055" />
-
-    <Button
-        android:id="@+id/btnRedoFrame"
-        android:layout_width="60dp"
-        android:layout_height="45dp"
-        android:text="@string/btnRedo"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:backgroundTint="@android:color/holo_green_dark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.66"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/btnUndoFrame"
-        android:layout_width="60dp"
-        android:layout_height="45dp"
-        android:text="@string/btnUndo"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:backgroundTint="@android:color/holo_red_dark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.66"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.055" />
-
-    <Button
-        android:id="@+id/btnAddColor"
-        android:layout_width="60dp"
-        android:layout_height="45dp"
-        android:text="@string/btnAddFrame"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:backgroundTint="@android:color/holo_green_dark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.025"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/btnAddFrame"
-        android:layout_width="60dp"
-        android:layout_height="45dp"
-        android:text="@string/btnAddFrame"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:backgroundTint="@android:color/holo_green_dark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.025"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/btnReplaceFrame"
-        android:layout_width="60dp"
-        android:layout_height="45dp"
-        android:text="@string/btnReplaceFrame"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:backgroundTint="@android:color/holo_green_dark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.196"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/btnRemoveFrame"
-        android:layout_width="60dp"
-        android:layout_height="45dp"
-        android:text="@string/btnRemoveFrame"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:backgroundTint="@android:color/holo_red_dark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.025"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.055" />
-
-    <Button
-        android:id="@+id/btnRemoveAllFrames"
-        android:layout_width="60dp"
-        android:layout_height="45dp"
-        android:text="@string/btnRemoveAllFrames"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:backgroundTint="@android:color/holo_red_dark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.196"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.055" />
-
-    <Button
-        android:id="@+id/btnRemoveColor"
-        android:layout_width="60dp"
-        android:layout_height="45dp"
-        android:text="@string/btnRemoveFrame"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:backgroundTint="@color/gray"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.025"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.055" />
-
-    <Button
-        android:id="@+id/btnFrame"
-        android:layout_width="100dp"
-        android:layout_height="45dp"
-        android:text="@string/btnFramesV"
-        android:textColor="@color/black"
-        android:textSize="11sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.975"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.055" />
-
-    <Button
-        android:id="@+id/btnPalette"
-        android:layout_width="100dp"
-        android:layout_height="45dp"
-        android:text="@string/btnPaletteV"
-        android:textColor="@color/black"
-        android:textSize="11sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.975"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/groupColors"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:constraint_referenced_ids="btnRemoveColor,btnAddColor,viewGridPalette,btnRedoFrame,btnUndoFrame" />
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/groupFrame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:constraint_referenced_ids="btnAddFrame,btnRemoveFrame,btnPrevFrame,btnNextFrame,btnReplaceFrame,btnPlay,btnRemoveAllFrames" />
-
-    <Button
-        android:id="@+id/btnPlay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btnPlay"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.31" />
+        app:layout_constraintGuide_percent="0.32" />
 
     <!--    <Button-->
-<!--        android:id="@+id/btnSwitch"-->
-<!--        android:layout_width="143dp"-->
-<!--        android:layout_height="78dp"-->
-<!--        android:text="@string/btnSwitch2"-->
-<!--        android:textSize="14sp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.297"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.0" />-->
+    <!--        android:id="@+id/btnSwitch"-->
+    <!--        android:layout_width="143dp"-->
+    <!--        android:layout_height="78dp"-->
+    <!--        android:text="@string/btnSwitch2"-->
+    <!--        android:textSize="14sp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.297"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintVertical_bias="0.0" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
